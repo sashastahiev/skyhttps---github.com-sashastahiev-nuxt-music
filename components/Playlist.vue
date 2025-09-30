@@ -6,7 +6,7 @@
       <div class="playlist-title__col col03">Альбом</div>
       <div class="playlist-title__col col04">
         <svg class="playlist-title__svg">
-          <use xlink:href="/img/icon/sprite.svg#icon-watch"></use>
+          <use xlink:href="assets/images/icon/sprite.svg#icon-watch"></use>
         </svg>
       </div>
     </div>
@@ -16,7 +16,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -33,7 +33,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">4:44</span>
           </div>
@@ -45,7 +45,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -55,14 +55,16 @@
             </div>
           </div>
           <div class="track__author">
-            <a class="track__author-link" href="http://">Dynoro, Outwork, Mr. Gee</a>
+            <a class="track__author-link" href="http://"
+              >Dynoro, Outwork, Mr. Gee</a
+            >
           </div>
           <div class="track__album">
             <a class="track__album-link" href="http://">Elektro</a>
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">2:22</span>
           </div>
@@ -74,7 +76,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -91,7 +93,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">2:22</span>
           </div>
@@ -103,7 +105,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -113,14 +115,16 @@
             </div>
           </div>
           <div class="track__author">
-            <a class="track__author-link" href="http://">Стоункат, Psychopath</a>
+            <a class="track__author-link" href="http://"
+              >Стоункат, Psychopath</a
+            >
           </div>
           <div class="track__album">
             <a class="track__album-link" href="http://">Non Stop</a>
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">4:12</span>
           </div>
@@ -132,7 +136,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -142,14 +146,16 @@
             </div>
           </div>
           <div class="track__author">
-            <a class="track__author-link" href="http://">Jaded, Will Clarke, AR/CO</a>
+            <a class="track__author-link" href="http://"
+              >Jaded, Will Clarke, AR/CO</a
+            >
           </div>
           <div class="track__album">
             <a class="track__album-link" href="http://">Run Run</a>
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">2:54</span>
           </div>
@@ -161,24 +167,27 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
               <a class="track__title-link" href="http://"
-                >Eyes on Fire <span class="track__title-span">(Zeds Dead Remix)</span></a
+                >Eyes on Fire
+                <span class="track__title-span">(Zeds Dead Remix)</span></a
               >
             </div>
           </div>
           <div class="track__author">
-            <a class="track__author-link" href="http://">Blue Foundation, Zeds Dead</a>
+            <a class="track__author-link" href="http://"
+              >Blue Foundation, Zeds Dead</a
+            >
           </div>
           <div class="track__album">
             <a class="track__album-link" href="http://">Eyes on Fire</a>
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">5:20</span>
           </div>
@@ -190,12 +199,13 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
               <a class="track__title-link" href="http://"
-                >Mucho Bien <span class="track__title-span">(Hi Profile Remix)</span></a
+                >Mucho Bien
+                <span class="track__title-span">(Hi Profile Remix)</span></a
               >
             </div>
           </div>
@@ -209,7 +219,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">3:41</span>
           </div>
@@ -221,7 +231,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -238,7 +248,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">1:48</span>
           </div>
@@ -250,7 +260,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -267,7 +277,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">1:48</span>
           </div>
@@ -278,7 +288,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -295,7 +305,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">1:48</span>
           </div>
@@ -306,7 +316,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -323,7 +333,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">1:48</span>
           </div>
@@ -334,7 +344,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -351,7 +361,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">1:48</span>
           </div>
@@ -362,7 +372,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -379,7 +389,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">1:48</span>
           </div>
@@ -390,7 +400,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -407,7 +417,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">1:48</span>
           </div>
@@ -419,7 +429,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -429,14 +439,18 @@
             </div>
           </div>
           <div class="track__author">
-            <a class="track__author-link" href="http://">Calvin Harris, Disciples</a>
+            <a class="track__author-link" href="http://"
+              >Calvin Harris, Disciples</a
+            >
           </div>
           <div class="track__album">
-            <a class="track__album-link" href="http://">How Deep Is Your Love</a>
+            <a class="track__album-link" href="http://"
+              >How Deep Is Your Love</a
+            >
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">3:32</span>
           </div>
@@ -448,7 +462,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -461,11 +475,13 @@
             <a class="track__author-link" href="http://">Tom Boxer</a>
           </div>
           <div class="track__album">
-            <a class="track__album-link" href="http://">Soundz Made in Romania</a>
+            <a class="track__album-link" href="http://"
+              >Soundz Made in Romania</a
+            >
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text">3:36</span>
           </div>
@@ -477,7 +493,7 @@
           <div class="track__title">
             <div class="track__title-image">
               <svg class="track__title-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                <use xlink:href="assets/images/icon/sprite.svg#icon-note"></use>
               </svg>
             </div>
             <div class="track__title-text">
@@ -494,7 +510,7 @@
           </div>
           <div class="track__time">
             <svg class="track__time-svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-like"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-like"></use>
             </svg>
             <span class="track__time-text"></span>
           </div>

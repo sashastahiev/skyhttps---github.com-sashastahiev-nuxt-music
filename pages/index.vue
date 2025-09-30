@@ -1,9 +1,9 @@
 <script setup>
-import FilterControls from '../components/FilterControls.vue'
-import Navbar from '../components/Navbar.vue'
-import PlayerBar from '../components/PlayerBar.vue'
-import Playlist from '../components/Playlist.vue'
-import Track from '../components/Track.vue'
+import FilterControls from "../components/FilterControls.vue";
+import Navbar from "../components/Navbar.vue";
+import PlayerBar from "../components/PlayerBar.vue";
+import Playlist from "../components/Playlist.vue";
+import Track from "../components/Track.vue";
 </script>
 
 <template>
@@ -14,9 +14,14 @@ import Track from '../components/Track.vue'
         <div class="main__centerblock centerblock">
           <div class="centerblock__search search">
             <svg class="search__svg">
-              <use xlink:href="/img/icon/sprite.svg#icon-search"></use>
+              <use xlink:href="assets/images/icon/sprite.svg#icon-search"></use>
             </svg>
-            <input class="search__text" type="search" placeholder="Поиск" name="search" />
+            <input
+              class="search__text"
+              type="search"
+              placeholder="Поиск"
+              name="search"
+            />
           </div>
           <FilterControls />
           <Playlist />
@@ -66,7 +71,8 @@ import Track from '../components/Track.vue'
 }
 
 /* main__centerblock, centerblock */
-.main__centerblock, .centerblock {
+.main__centerblock,
+.centerblock {
   /* Центральный блок страницы */
   width: auto;
   -webkit-box-flex: 3;
@@ -76,7 +82,8 @@ import Track from '../components/Track.vue'
 }
 
 /* centerblock__search, search */
-.centerblock__search, .search {
+.centerblock__search,
+.search {
   /* Форма поиска */
   width: 100%;
   border-bottom: 1px solid #4e4e4e;

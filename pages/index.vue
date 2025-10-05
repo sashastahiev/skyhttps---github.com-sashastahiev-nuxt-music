@@ -14,7 +14,7 @@ import Track from "../components/Track.vue";
         <div class="main__centerblock centerblock">
           <div class="centerblock__search search">
             <svg class="search__svg">
-              <use xlink:href="assets/images/icon/sprite.svg#icon-search"></use>
+              <use xlink:href="/images/icon/sprite.svg#icon-search"></use>
             </svg>
             <input
               class="search__text"

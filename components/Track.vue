@@ -4,7 +4,7 @@
       <p class="sidebar__personal-name">Sergey.Ivanov</p>
       <div class="sidebar__icon">
         <svg>
-          <use xlink:href="assets/images/icon/sprite.svg#logout"></use>
+          <use xlink:href="/images/icon/sprite.svg#logout"></use>
         </svg>
       </div>
     </div>
@@ -14,7 +14,7 @@
           <a class="sidebar__link" href="#">
             <img
               class="sidebar__img"
-              src="assets/images/playlist01.png"
+              src="/images/playlist01.png"
               alt="day's playlist"
             />
           </a>
@@ -23,7 +23,7 @@
           <a class="sidebar__link" href="#">
             <img
               class="sidebar__img"
-              src="assets/images/playlist02.png"
+              src="/images/playlist02.png"
               alt="day's playlist"
             />
           </a>
@@ -32,7 +32,7 @@
           <a class="sidebar__link" href="#">
             <img
               class="sidebar__img"
-              src="assets/images/playlist03.png"
+              src="/images/playlist03.png"
               alt="day's playlist"
             />
           </a>

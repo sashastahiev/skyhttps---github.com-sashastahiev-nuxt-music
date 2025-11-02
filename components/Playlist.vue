@@ -11,7 +11,6 @@ const { fetchTracks, tracks, loading, error } = useTracks();
 
 onMounted(() => {
   fetchTracks();
-  console.log(tracks.value)
 });
 
 </script>

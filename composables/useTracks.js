@@ -27,7 +27,7 @@ export const useTracks = () => {
   const formatDuration = (seconds) => {
     const minutes = Math.floor(seconds /60);
     const remainingSeconds = seconds % 60;
-    return `${minutes}:` 
+    return `${minutes}:${remainingSeconds.toString().padStart(2,"0")}`; 
   }
   return {
     tracks,

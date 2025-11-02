@@ -1,3 +1,20 @@
+<script setup>
+import {useTracks} from '../composables/useTracks.js'
+const props = defineProps({
+  track: {
+    type: Object,
+    required: true,
+  },
+});
+
+const { fetchTracks, tracks, loading, error } = useTracks();
+
+onMounted(() => {
+  fetchTracks();
+  console.log(tracks.value)
+});
+
+</script>
 <template>
   <div class="centerblock__content playlist-content">
     <div class="content__title playlist-title">
@@ -9,6 +26,18 @@
           <use xlink:href="/images/icon/sprite.svg#icon-watch"></use>
         </svg>
       </div>
+    </div>
+    <!-- // если треки загружаются:  -->
+    <div v-if="loading" class="content__playlist playlist">
+      <div class="loading">Загрузка треков...</div>
+    </div>
+    <!-- // если возникла ошибка:  -->
+    <div v-else-if="error" class="content__playlist playlist">
+      <div class="error">Ошибка загрузки треков: {{ error }}</div>
+    </div>
+    <!-- // если всё ок, рендерим треки: -->
+    <div v-else class="content__playlist playlist">
+      ...   
     </div>
     <div class="content__playlist playlist">
       <div class="playlist__item">

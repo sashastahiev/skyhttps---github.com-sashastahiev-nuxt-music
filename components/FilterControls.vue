@@ -62,51 +62,58 @@ const genreItems = computed(() => {
   });
 });
 </script>
+
 <template>
   <h2 class="centerblock__h2">Треки</h2>
   <div class="centerblock__filter filter">
     <div class="filter__title">Искать по:</div>
-    <div
-      class="filter__button button-author _btn-text"
-      :class="{ active: activeFilter === 'author' }"
-      @click="toggleFilter('author')"
-    >
-      исполнителю
+    <div>
+      <div
+        class="filter__button button-author _btn-text"
+        :class="{ active: activeFilter === 'author' }"
+        @click="toggleFilter('author')"
+      >
+        исполнителю
+      </div>
+      <div v-show="activeFilter === 'author'" class="filter__dropdown">
+        <ul class="filter__list">
+          <li v-for="item in authorItems" :key="item" class="filter__item">
+            {{ item }}
+          </li>
+        </ul>
+      </div>
     </div>
-    <div v-show="activeFilter === 'author'" class="filter__dropdown">
-      <ul class="filter__list">
-        <li v-for="item in authorItems" :key="item" class="filter__item">
-          {{ item }}
-        </li>
-      </ul>
+    <div>
+      <div
+        class="filter__button button-year _btn-text"
+        :class="{ active: activeFilter === 'year' }"
+        @click="toggleFilter('year')"
+      >
+        году выпуска
+      </div>
+      <div v-show="activeFilter === 'year'" class="filter__dropdown">
+        <ul class="filter__list">
+          <li v-for="item in yearItems" :key="item" class="filter__item">
+            {{ item }}
+          </li>
+        </ul>
+      </div>
     </div>
-    <div
-      class="filter__button button-year _btn-text"
-      :class="{ active: activeFilter === 'year' }"
-      @click="toggleFilter('year')"
-    >
-      году выпуска
-    </div>
-    <div v-show="activeFilter === 'year'" class="filter__dropdown">
-      <ul class="filter__list">
-        <li v-for="item in yearItems" :key="item" class="filter__item">
-          {{ item }}
-        </li>
-      </ul>
-    </div>
-    <div
-      class="filter__button button-genre _btn-text"
-      :class="{ active: activeFilter === 'genre' }"
-      @click="toggleFilter('genre')"
-    >
-      жанру
-    </div>
-    <div v-show="activeFilter === 'genre'" class="filter__dropdown">
-      <ul class="filter__list">
-        <li v-for="item in genreItems" :key="item" class="filter__item">
-          {{ item }}
-        </li>
-      </ul>
+    <div>
+      <div
+        class="filter__button button-genre _btn-text"
+        :class="{ active: activeFilter === 'genre' }"
+        @click="toggleFilter('genre')"
+      >
+        жанру
+      </div>
+      <div v-show="activeFilter === 'genre'" class="filter__dropdown">
+        <ul class="filter__list">
+          <li v-for="item in genreItems" :key="item" class="filter__item">
+            {{ item }}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -157,5 +164,18 @@ const genreItems = computed(() => {
 .filter__button:not(:last-child) {
   margin-right: 10px;
 }
-
+.filter__list {
+  position: absolute;
+  max-height: 100px;
+  overflow-y:scroll;
+  margin-top: 10px;
+}
+.filter__item{
+  margin: 5px 0 5px 0;
+  padding: 5px;
+  border-radius: 10px;
+}
+.filter__item:hover{
+  background-color: rgb(88, 84, 84);
+}
 </style>

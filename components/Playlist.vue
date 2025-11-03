@@ -28,15 +28,15 @@ onMounted(() => {
     </div>
     <!-- // если треки загружаются:  -->
     <div v-if="loading" class="content__playlist playlist">
-      <div class="loading">Загрузка треков...</div>
+      <div class="loading loader-circle"></div>
     </div>
     <!-- // если возникла ошибка:  -->
     <div v-else-if="error" class="content__playlist playlist">
       <div class="error">Ошибка загрузки треков: {{ error }}</div>
     </div>
-    <!-- // если всё ок, рендерим треки: -->
+    <!-- // если всё ок, рендерим треки:  -->
     <div v-else class="content__playlist playlist">
-      ...   
+    
     </div>
     <div class="content__playlist playlist">
       <div class="playlist__item">
@@ -687,4 +687,37 @@ onMounted(() => {
   text-align: right;
   color: #696969;
 }
+.loading{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.loader-circle {
+  /* Размеры круга */
+  width: 60px;
+  height: 60px;
+  
+  /* Граница и скругление */
+  border: 6px solid transparent;
+  border-top: 6px solid white;        /* Цвет активной дуги */
+  border-right: 6px solid white;
+  border-radius: 50%;
+  
+  /* Позиционирование */
+  margin: 50px auto;
+  
+  /* Анимация вращения */
+  animation: spin 1s linear infinite;
+}
+
+/* Анимация: вращение по кругу */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 </style>

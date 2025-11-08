@@ -1,15 +1,10 @@
 <script setup>
-import { usePlayerStore } from '../stores/player';
-import { useAudioPlayer } from '../composables/useAudioPlayer';
+import { usePlayerStore } from "../stores/player";
+import { useAudioPlayer } from "../composables/useAudioPlayer";
 const playerStore = usePlayerStore();
 const audioRef = ref(null);
-const {
-  playTrack,
-  handleTimeUpdate,
-  seekTo,
-  updateVolume,
-  initPlayer,
-} = useAudioPlayer();
+const { playTrack, handleTimeUpdate, seekTo, updateVolume, initPlayer } =
+  useAudioPlayer();
 onMounted(() => {
   initPlayer(audioRef.value);
 });
@@ -28,7 +23,7 @@ const handleProgressClick = (event) => {
   const clickPosition = event.offsetX;
   // получаем общую ширину бара
   const progressBarWidth = progressBar.offsetWidth;
-  // и узнаем процентное соотношение клика к общей ширине. 
+  // и узнаем процентное соотношение клика к общей ширине.
   // если в середине - 50%, значит нам нужна половина трека
   const percentage = (clickPosition / progressBarWidth) * 100;
   // передаём это значение в хук, чтобы он обновил значение в хранилище
@@ -49,7 +44,7 @@ const handleProgressClick = (event) => {
           <div class="player__controls">
             <div class="player__btn-prev">
               <svg class="player__btn-prev-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-prev"></use>
+                <use xlink:href="/images/icon/sprite.svg#icon-prev"></use>
               </svg>
             </div>
             <div class="player__btn-play _btn" @click="handlePlay">
@@ -57,25 +52,25 @@ const handleProgressClick = (event) => {
                 <use
                   :xlink:href="
                     playerStore.isPlaying
-                    ? '/img/icon/sprite.svg#icon-pause'
-                    : '/img/icon/sprite.svg#icon-play'
+                      ? '/images/icon/sprite.svg#icon-pause'
+                      : '/images/icon/sprite.svg#icon-play'
                   "
                 ></use>
               </svg>
             </div>
             <div class="player__btn-next">
               <svg class="player__btn-next-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-next"></use>
+                <use xlink:href="/images/icon/sprite.svg#icon-next"></use>
               </svg>
             </div>
             <div class="player__btn-repeat _btn-icon">
               <svg class="player__btn-repeat-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-repeat"></use>
+                <use xlink:href="/images/icon/sprite.svg#icon-repeat"></use>
               </svg>
             </div>
             <div class="player__btn-shuffle _btn-icon">
               <svg class="player__btn-shuffle-svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-shuffle"></use>
+                <use xlink:href="/images/icon/sprite.svg#icon-shuffle"></use>
               </svg>
             </div>
           </div>
@@ -83,7 +78,7 @@ const handleProgressClick = (event) => {
             <div class="track-play__contain">
               <div class="track-play__image">
                 <svg class="track-play__svg">
-                  <use xlink:href="/img/icon/sprite.svg#icon-note"></use>
+                  <use xlink:href="/images/icon/sprite.svg#icon-note"></use>
                 </svg>
               </div>
               <div class="track-play__author">
@@ -103,7 +98,7 @@ const handleProgressClick = (event) => {
           <div class="volume__content">
             <div class="volume__image">
               <svg class="volume__svg">
-                <use xlink:href="/img/icon/sprite.svg#icon-volume"></use>
+                <use xlink:href="/images/icon/sprite.svg#icon-volume"></use>
               </svg>
             </div>
             <div class="volume__progress _btn">
@@ -124,7 +119,8 @@ const handleProgressClick = (event) => {
     <audio
       ref="audioRef"
       @timeupdate="handleTimeUpdate"
-      @ended="handleTrackEnd"/>
+      @ended="handleTrackEnd"
+    />
   </div>
 </template>
 

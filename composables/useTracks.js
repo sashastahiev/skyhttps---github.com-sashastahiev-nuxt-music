@@ -17,6 +17,7 @@ export const useTracks = () => {
       }
       const data = await response.json();
       tracks.value = data.data;
+      console.log(tracks)
     } catch (e) {
       error.value =
         e instanceof Error ? e.message : "Ошибка при загрузке треков :(";

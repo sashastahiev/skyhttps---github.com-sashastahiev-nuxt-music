@@ -1,5 +1,6 @@
 <script setup>
 import {useTracks} from '../composables/useTracks.js'
+import TrackItem from "../components/TrackItem.vue"
 const props = defineProps({
   track: {
     type: Object,
@@ -36,7 +37,7 @@ onMounted(() => {
     </div>
     <!-- // если всё ок, рендерим треки:  -->
     <div v-else class="content__playlist playlist">
-    
+      <TrackItem v-for="track in tracks" :key="track.id" :track="track" />
     </div>
     <div class="content__playlist playlist">
       <div class="playlist__item">

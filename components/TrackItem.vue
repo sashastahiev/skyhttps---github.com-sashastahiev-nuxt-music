@@ -1,6 +1,5 @@
 <script setup>
 import {useTracks} from '../composables/useTracks.js'
-import { usePlayerStore } from '../stores/player.js';
 const props = defineProps({
   track: {
     type: Object,
@@ -8,7 +7,6 @@ const props = defineProps({
   },
 });
 const { formatDuration } = useTracks()
-const { setCurrentTrack } = usePlayerStore()
 </script>
 <template>
   <div class="playlist__item">
@@ -40,3 +38,13 @@ const { setCurrentTrack } = usePlayerStore()
     </div>
   </div>
 </template>
+
+<style scoped>
+.playlist__item {
+  cursor: pointer;
+}
+.playlist__item:hover{
+  background-color: rgb(69, 70, 70);
+  transition: 0.5s;
+}
+</style>

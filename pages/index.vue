@@ -26,7 +26,7 @@ import Track from "../components/Track.vue";
           <FilterControls />
           <Playlist />
         </div>
-        <Track />
+        <!-- <Track /> -->
       </main>
       <PlayerBar />
       <footer class="footer"></footer>

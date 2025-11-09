@@ -1,5 +1,6 @@
 <script setup>
 import {useTracks} from '../composables/useTracks.js'
+import { setCurrentTrack } from '../stores/player.js';
 const props = defineProps({
   track: {
     type: Object,
@@ -9,7 +10,7 @@ const props = defineProps({
 const { formatDuration } = useTracks()
 </script>
 <template>
-  <div class="playlist__item">
+  <div class="playlist__item" @click="setCurrentTrack(track)">
     <div class="playlist__track track">
       <div class="track__title">
         <div class="track__title-image">

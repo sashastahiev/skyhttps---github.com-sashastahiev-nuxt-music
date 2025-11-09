@@ -46,7 +46,9 @@ export const usePlayerStore = defineStore("player", {
     setAudioRef(element) {
       this.audioRef = element;
       if (this.audioRef) {
+        console.log(this.audioRef.volume)
         this.audioRef.volume = this.volume / 100;
+
       }
     },
   },

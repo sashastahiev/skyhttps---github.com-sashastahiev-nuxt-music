@@ -1,6 +1,6 @@
 <script setup>
 import {useTracks} from '../composables/useTracks.js'
-import { setCurrentTrack } from '../stores/player.js';
+import { usePlayerStore } from '../stores/player.js';
 const props = defineProps({
   track: {
     type: Object,
@@ -8,9 +8,10 @@ const props = defineProps({
   },
 });
 const { formatDuration } = useTracks()
+const { setAudioRef } = usePlayerStore()
 </script>
 <template>
-  <div class="playlist__item" @click="setCurrentTrack(track)">
+  <div class="playlist__item" @click="setAudioRef(track.track_file)">
     <div class="playlist__track track">
       <div class="track__title">
         <div class="track__title-image">
@@ -20,8 +21,7 @@ const { formatDuration } = useTracks()
         </div>
         <div class="track__title-text">
           <a class="track__title-link" href="#"
-            >{{ track.name }} <span class="track__title-span"></span
-          ></a>
+            >{{ track.name }} <span class="track__title-span"></span></a>
         </div>
       </div>
       <div class="track__author">

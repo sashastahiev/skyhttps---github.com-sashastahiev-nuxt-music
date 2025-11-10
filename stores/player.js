@@ -20,6 +20,7 @@ export const usePlayerStore = defineStore("player", {
     // Установить текущий трек
     setCurrentTrack(track) {
       this.currentTrack = track;
+      
     },
 
     // Установить плейлист
@@ -46,9 +47,7 @@ export const usePlayerStore = defineStore("player", {
     setAudioRef(element) {
       this.audioRef = element;
       if (this.audioRef) {
-        console.log(this.audioRef.volume)
-        this.audioRef.volume = this.volume / 100;
-
+        // this.audioRef.volume = this.volume / 100;
       }
     },
   },

@@ -49,7 +49,7 @@ const handleProgressClick = (event) => {
             </div>
             <div class="player__btn-play _btn" @click="handlePlay">
               <svg class="player__btn-play-svg">
-                <use @click="playTrack"
+                <use
                   :xlink:href="
                     playerStore.isPlaying
                       ? '/images/icon/sprite.svg#icon-pause'

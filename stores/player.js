@@ -20,7 +20,6 @@ export const usePlayerStore = defineStore("player", {
     // Установить текущий трек
     setCurrentTrack(track) {
       this.currentTrack = track;
-      
     },
 
     // Установить плейлист

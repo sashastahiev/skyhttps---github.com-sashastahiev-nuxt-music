@@ -13,7 +13,7 @@ const handlePlay = () => {
     playTrack(playerStore.currentTrack);
   }
 };
-
+const { setPlaying } = usePlayerStore()
 // Обработчик клика по прогресс-бару, чтобы перемотать трек
 const handleProgressClick = (event) => {
   if (!playerStore.currentTrack) return;
@@ -47,7 +47,7 @@ const handleProgressClick = (event) => {
                 <use xlink:href="/images/icon/sprite.svg#icon-prev"></use>
               </svg>
             </div>
-            <div class="player__btn-play _btn" @click="handlePlay">
+            <div class="player__btn-play _btn" @click="handlePlay()">
               <svg class="player__btn-play-svg">
                 <use
                   :xlink:href="

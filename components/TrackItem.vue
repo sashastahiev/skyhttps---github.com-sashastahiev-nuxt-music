@@ -8,10 +8,10 @@ const props = defineProps({
   },
 });
 const { formatDuration } = useTracks()
-const { setCurrentTrack } = usePlayerStore()
+const { setCurrentTrack,setAlbumTrack,setAuthorTrack } = usePlayerStore()
 </script>
 <template>
-  <div class="playlist__item" @click="setCurrentTrack(track.track_file)">
+  <div class="playlist__item" @click="setCurrentTrack(track.track_file, track.album, track.author)">
     <div class="playlist__track track">
       <div class="track__title">
         <div class="track__title-image">

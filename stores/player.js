@@ -14,14 +14,19 @@ export const usePlayerStore = defineStore("player", {
     volume: 50,
     // Ссылка на аудиотег
     audioRef: null,
+    // Ссылка на автора трека
+    author: null,
+    //Ссылка на альбом
+    album: null,
   }),
 
   actions: {
     // Установить текущий трек
     setCurrentTrack(track) {
       this.currentTrack = track;
+      this.album = album;
+      this.author = author;
     },
-
     // Установить плейлист
     setPlaylist(tracks) {
       this.playlist = tracks;
@@ -46,7 +51,7 @@ export const usePlayerStore = defineStore("player", {
     setAudioRef(element) {
       this.audioRef = element;
       if (this.audioRef) {
-        // this.audioRef.volume = this.volume / 100;
+        this.audioRef.volume = this.volume / 100;
       }
     },
   },

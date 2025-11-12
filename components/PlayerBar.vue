@@ -3,7 +3,7 @@ import { usePlayerStore } from "../stores/player";
 import { useAudioPlayer } from "../composables/useAudioPlayer";
 const playerStore = usePlayerStore();
 const audioRef = ref(null);
-const { playTrack, handleTimeUpdate, seekTo, updateVolume, initPlayer } =
+const { playTrack, handleTimeUpdate, seekTo, updateVolume, initPlayer, togglePlay } =
   useAudioPlayer();
 onMounted(() => {
   initPlayer(audioRef.value);
@@ -13,7 +13,7 @@ const handlePlay = () => {
     playTrack(playerStore.currentTrack);
   }
 };
-const { setPlaying } = usePlayerStore()
+
 // Обработчик клика по прогресс-бару, чтобы перемотать трек
 const handleProgressClick = (event) => {
   if (!playerStore.currentTrack) return;
@@ -33,7 +33,7 @@ const handleProgressClick = (event) => {
 <template>
   <div class="bar">
     <div class="bar__content">
-      <div class="bar__player-progress" @click="handleProgressClick">
+      <div class="bar__player-progress" @click="handleProgressClick()">
         <div
           class="bar__player-progress-line"
           :style="{ width: playerStore.progress + '%' }"
@@ -47,12 +47,12 @@ const handleProgressClick = (event) => {
                 <use xlink:href="/images/icon/sprite.svg#icon-prev"></use>
               </svg>
             </div>
-            <div class="player__btn-play _btn" @click="handlePlay()">
+            <div class="player__btn-play _btn" @click="togglePlay(playerStore.isPlaying)">
               <svg class="player__btn-play-svg">
                 <use
                   :xlink:href="
                     playerStore.isPlaying
-                      ? '/images/icon/sprite.svg#icon-pause'
+                      ? '/images/icon/pause.ico'
                       : '/images/icon/sprite.svg#icon-play'
                   "
                 ></use>
@@ -83,12 +83,12 @@ const handleProgressClick = (event) => {
               </div>
               <div class="track-play__author">
                 <a class="track-play__author-link" href="#">{{
-                  playerStore.currentTrack?.author || "Выберите трек"
+                  playerStore.author ? playerStore.author : "Выберите трек"
                 }}</a>
               </div>
               <div class="track-play__album">
                 <a class="track-play__album-link" href="#">{{
-                  playerStore.currentTrack?.album || ""
+                  playerStore.album ? playerStore.album : ""
                 }}</a>
               </div>
             </div>

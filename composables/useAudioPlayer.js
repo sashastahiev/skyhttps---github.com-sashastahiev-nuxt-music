@@ -19,10 +19,8 @@ export function useAudioPlayer() {
       console.error("Плеер не инициализирован");
       return;
     }
-
     try {
-      playerStore.setCurrentTrack(track);
-      playerStore.audioRef.src = track.track_file;
+      playerStore.audioRef.src = track;
       await playerStore.audioRef.play();
       playerStore.setPlaying(true);
     } catch (error) {
@@ -30,13 +28,22 @@ export function useAudioPlayer() {
       playerStore.setPlaying(false);
     }
   };
-
+//Управление воспроизведения и остановки трека
+  const togglePlay = (isPlaying) => {
+      if (isPlaying){
+        playerStore.audioRef.pause()
+        playerStore.setPlaying(false)
+      }
+      else {
+        playerStore.audioRef.play()
+        playerStore.setPlaying(true)
+      }
+  }
 // Обновляем прогресс трека
   const handleTimeUpdate = () => {
     if (!playerStore.audioRef) return;
     const currentTime = playerStore.audioRef.currentTime;
     const duration = playerStore.audioRef.duration;
-    console.log(duration);
     if (duration) {
       const progress = (currentTime / duration) * 100;
       playerStore.setProgress(progress);
@@ -63,5 +70,6 @@ export function useAudioPlayer() {
     handleTimeUpdate,
     seekTo,
     updateVolume,
+    togglePlay,
   };
 }

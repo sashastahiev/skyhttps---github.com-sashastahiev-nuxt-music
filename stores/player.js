@@ -22,7 +22,7 @@ export const usePlayerStore = defineStore("player", {
 
   actions: {
     // Установить текущий трек
-    setCurrentTrack(track) {
+    setCurrentTrack(track, album, author) {
       this.currentTrack = track;
       this.album = album;
       this.author = author;

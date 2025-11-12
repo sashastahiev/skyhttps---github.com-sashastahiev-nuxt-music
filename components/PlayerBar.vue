@@ -1,6 +1,8 @@
 <script setup>
 import { usePlayerStore } from "../stores/player";
 import { useAudioPlayer } from "../composables/useAudioPlayer";
+import { ref } from "vue";
+const targetEl = ref(null);
 const playerStore = usePlayerStore();
 const audioRef = ref(null);
 const { playTrack, handleTimeUpdate, seekTo, updateVolume, initPlayer, togglePlay } =
@@ -13,16 +15,15 @@ const handlePlay = () => {
     playTrack(playerStore.currentTrack);
   }
 };
-
 // Обработчик клика по прогресс-бару, чтобы перемотать трек
 const handleProgressClick = (event) => {
   if (!playerStore.currentTrack) return;
-
-  const progressBar = event.currentTarget;
+  const rect = targetEl.value.getBoundingClientRect();
+  const progressBar = event.clientX;
   // узнаём, где конкретно мы кликнули
   const clickPosition = event.offsetX;
   // получаем общую ширину бара
-  const progressBarWidth = progressBar.offsetWidth;
+  const progressBarWidth = rect.width;
   // и узнаем процентное соотношение клика к общей ширине.
   // если в середине - 50%, значит нам нужна половина трека
   const percentage = (clickPosition / progressBarWidth) * 100;
@@ -33,7 +34,7 @@ const handleProgressClick = (event) => {
 <template>
   <div class="bar">
     <div class="bar__content">
-      <div class="bar__player-progress" @click="handleProgressClick()">
+      <div class="bar__player-progress" ref="targetEl" @click="handleProgressClick($event)">
         <div
           class="bar__player-progress-line"
           :style="{ width: playerStore.progress + '%' }"
@@ -47,7 +48,8 @@ const handleProgressClick = (event) => {
                 <use xlink:href="/images/icon/sprite.svg#icon-prev"></use>
               </svg>
             </div>
-            <div class="player__btn-play _btn" @click="togglePlay(playerStore.isPlaying)">
+            <div class="player__btn-play _btn" 
+            @click="playerStore.currentTrack == playerStore.audioRef.src ? togglePlay(playerStore.isPlaying) : handlePlay()">
               <svg class="player__btn-play-svg">
                 <use
                   :xlink:href="
@@ -139,9 +141,12 @@ const handleProgressClick = (event) => {
 }
 
 .bar__player-progress {
+  position: relative;
   width: 100%;
   height: 5px;
   background: #2e2e2e;
+  z-index: 9;
+  cursor: pointer;
 }
 
 .bar__player-block {
@@ -157,7 +162,14 @@ const handleProgressClick = (event) => {
   align-items: center;
   justify-content: flex-start;
 }
-
+.bar__player-progress-line{
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgb(233, 69, 69);
+  height: 5px;
+  z-index: 10;
+}
 .player__controls {
   display: flex;
   flex-direction: row;

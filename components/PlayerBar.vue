@@ -10,16 +10,11 @@ const { playTrack, handleTimeUpdate, seekTo, updateVolume, initPlayer, togglePla
 onMounted(() => {
   initPlayer(audioRef.value);
 });
-const handlePlay = () => {
-  if (playerStore.currentTrack) {
-    playTrack(playerStore.currentTrack);
-  }
-};
+
 // Обработчик клика по прогресс-бару, чтобы перемотать трек
 const handleProgressClick = (event) => {
   if (!playerStore.currentTrack) return;
   const rect = targetEl.value.getBoundingClientRect();
-  const progressBar = event.clientX;
   // узнаём, где конкретно мы кликнули
   const clickPosition = event.offsetX;
   // получаем общую ширину бара
@@ -48,13 +43,12 @@ const handleProgressClick = (event) => {
                 <use xlink:href="/images/icon/sprite.svg#icon-prev"></use>
               </svg>
             </div>
-            <div class="player__btn-play _btn" 
-            @click="playerStore.currentTrack == playerStore.audioRef.src ? togglePlay(playerStore.isPlaying) : handlePlay()">
+            <div class="player__btn-play _btn" @click="togglePlay(playerStore.isPlaying)">
               <svg class="player__btn-play-svg">
                 <use
                   :xlink:href="
                     playerStore.isPlaying
-                      ? '/images/icon/pause.ico'
+                      ? '/images/icon/pause.svg'
                       : '/images/icon/sprite.svg#icon-play'
                   "
                 ></use>

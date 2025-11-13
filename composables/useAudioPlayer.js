@@ -28,11 +28,6 @@ export function useAudioPlayer() {
       playerStore.setPlaying(false);
     }
   };
-  const handlePlay = (currentTrack) => {
-  if (currentTrack) {
-    playTrack(currentTrack);
-  }
-};
   //Управление воспроизведения и остановки трека
   const togglePlay = (isPlaying) => {
       if (isPlaying){

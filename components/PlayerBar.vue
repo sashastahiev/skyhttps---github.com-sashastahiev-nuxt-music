@@ -32,8 +32,8 @@ const handleProgressClick = (event) => {
       <div class="bar__player-progress" ref="targetEl" @click="handleProgressClick($event)">
         <div
           class="bar__player-progress-line"
-          :style="{ width: playerStore.progress + '%' }"
-        ></div>
+          :style="{ width: playerStore.progress + '%' }">
+        </div>
       </div>
       <div class="bar__player-block">
         <div class="bar__player player">
@@ -135,6 +135,10 @@ const handleProgressClick = (event) => {
 }
 
 .bar__player-progress {
+  display: flex;
+  grid-template-columns: auto 1fr; /* первый столбец — по контенту, второй — занимает остаток */
+  gap: 10px;
+  align-items: center;
   position: relative;
   width: 100%;
   height: 5px;
@@ -163,6 +167,17 @@ const handleProgressClick = (event) => {
   background-color: rgb(233, 69, 69);
   height: 5px;
   z-index: 10;
+}
+.bar__player-progress-line::after{
+  content:"";
+  width: 10px;
+  height: 10px;
+  display: block;
+  border-radius: 50%;
+  background-color: red;
+  border: 3px solid white;
+  margin-top: -3px;
+  margin-left: 100%;
 }
 .player__controls {
   display: flex;

@@ -1,4 +1,5 @@
 import { usePlayerStore } from "../stores/player.js";
+import { watchEffect } from 'vue';
 
 export function useAudioPlayer() {
   // Получаем store, чтобы менять данные в хранилище
@@ -63,6 +64,11 @@ export function useAudioPlayer() {
     if (!playerStore.audioRef) return;
     playerStore.audioRef.volume = playerStore.volume / 100;
   };
+  watchEffect(() => {
+      if (playerStore.progress >= 100 && playerStore.isPlaying) {
+         playerStore.setPlaying(false);
+      }
+   });
 
   return {
     initPlayer,

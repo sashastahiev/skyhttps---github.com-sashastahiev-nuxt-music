@@ -7,4 +7,3 @@ import Signup from "../pages/signup.vue";
     <Signup/>
   </div>
 </template>
-<!-- создание проекта в nuxt -->

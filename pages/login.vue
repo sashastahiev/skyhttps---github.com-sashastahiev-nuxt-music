@@ -5,7 +5,7 @@
             <input placeholder="Почта" class="login-window_mail"/>
             <input placeholder="Пароль" class="login-window_password"/>
             <button class="login-window_sing-in">Войти</button>
-            <button class="login-window_sing-up">Зарегистрироваться</button>
+            <NuxtLink to="/signup"><button class="login-window_sing-up">Зарегистрироваться</button></NuxtLink>
         </fieldset>
     </div>
 </template>
@@ -39,11 +39,18 @@
     width: 278.5px;
     height: 40px;
     margin-top: 32px;
-
+    font-size: 16px;
+    padding-left: 4px;
     border: none;
     border-bottom: 1px solid;
     border-color: rgba(225, 225, 225, 1);
     
+}
+.login-window_sing-in:hover{
+    background: rgba(63, 0, 125, 1);
+}
+.login-window_sing-in:active{
+    background: rgb(49, 0, 99);
 }
 .login-window_sing-in{
     width: 278px;
@@ -56,6 +63,12 @@
     font-size: 18px;
     font-weight: 400;
     margin-top: 60px;
+}
+.login-window_sing-up:hover{
+    background: rgb(230, 226, 226)
+}
+.login-window_sing-up:active{
+    background: rgba(217, 217, 217, 1);
 }
 .login-window_sing-up{
     width: 278px;

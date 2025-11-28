@@ -38,10 +38,18 @@
 .login-window_mail, .login-window_password{
     width: 278.5px;
     height: 40px;
-    margin-top: 30px;
+    margin-top: 32px;
     border: none;
+    font-size: 16px;
+    padding-left: 4px;
     border-bottom: 1px solid;
     border-color: rgba(225, 225, 225, 1);
+}
+.login-window_sing-up:hover{
+    background: rgba(63, 0, 125, 1);
+}
+.login-window_sing-up:active{
+    background: rgb(49, 0, 99);
 }
 .login-window_sing-up{
     width: 278px;
@@ -54,6 +62,7 @@
     font-size: 18px;
     font-weight: 400;
     margin-top: 60px;
+    font-size: 18px;
     margin-bottom: 50px;
 }
 input::placeholder{

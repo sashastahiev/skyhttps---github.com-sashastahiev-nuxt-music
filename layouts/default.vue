@@ -22,6 +22,8 @@ useHead({
     { property: "og\:title", content: "Избранное | Skypro Music" },
     { property: "og\:site\_name", content: "Skypro Music" },
     { name: "twitter\:title", content: "Skypro Music — Избранное" },
+    { name: "/category/:id", content: "Skypro Music — Категории" },
+    { name: "/favorites", content: "Избранное" },
   ],
 });
 </script>

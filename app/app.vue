@@ -1,9 +1,10 @@
 <script setup> 
-import Index from "../pages/index.vue"
+import Login from "../pages/login.vue"
+import Signup from "../pages/signup.vue";
 </script>
 <template>
   <div>
-    <Index/>
+    <Signup/>
   </div>
 </template>
 <!-- создание проекта в nuxt -->

@@ -93,7 +93,7 @@ const genreItems = computed(() => {
       </div>
       <div v-show="activeFilter === 'year'" class="filter__dropdown">
         <ul class="filter__list">
-          <li v-for="item in yearItems" :key="item" class="filter__item">
+          <li v-for="item in yearItems" :key="item" class="filter__item" @click="yearItems()">
             {{ item }}
           </li>
         </ul>

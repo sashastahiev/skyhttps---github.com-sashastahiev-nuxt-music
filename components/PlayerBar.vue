@@ -5,7 +5,7 @@ import { ref } from "vue";
 const targetEl = ref(null);
 const playerStore = usePlayerStore();
 const audioRef = ref(null);
-const { playTrack, handleTimeUpdate, seekTo, updateVolume, initPlayer, togglePlay } =
+const { handleTimeUpdate, seekTo, updateVolume, initPlayer, togglePlay } =
   useAudioPlayer();
 onMounted(() => {
   initPlayer(audioRef.value);

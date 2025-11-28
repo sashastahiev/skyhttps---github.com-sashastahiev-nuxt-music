@@ -67,6 +67,7 @@ export function useAudioPlayer() {
   watchEffect(() => {
       if (playerStore.progress >= 100 && playerStore.isPlaying) {
          playerStore.setPlaying(false);
+         playerStore.setProgress(0);
       }
    });
 

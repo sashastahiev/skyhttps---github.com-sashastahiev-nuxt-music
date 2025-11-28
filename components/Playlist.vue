@@ -11,7 +11,7 @@ const props = defineProps({
 const { fetchTracks, tracks, loading, error } = useTracks();
 
 onMounted(() => {
-  fetchTracks();
+  fetchTracks(null);
 });
 
 </script>

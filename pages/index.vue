@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar.vue";
 import PlayerBar from "../components/PlayerBar.vue";
 import Playlist from "../components/Playlist.vue";
 import Track from "../components/Track.vue";
+import Login from "../pages/login.vue"
 </script>
 
 <template>
@@ -26,7 +27,7 @@ import Track from "../components/Track.vue";
           <FilterControls />
           <Playlist />
         </div>
-        <!-- <Track /> -->
+        <Track />
       </main>
       <PlayerBar />
       <footer class="footer"></footer>

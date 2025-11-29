@@ -1,5 +1,6 @@
 <script setup>
 import {useTracks} from '../composables/useTracks.js'
+import { usePlayerStore } from '~~/stores/player.js';
 import TrackItem from "../components/TrackItem.vue"
 const props = defineProps({
   track: {
@@ -7,11 +8,11 @@ const props = defineProps({
     required: true,
   },
 });
-
 const { fetchTracks, tracks, loading, error } = useTracks();
-
+const playerStore = usePlayerStore();
 onMounted(() => {
-  fetchTracks(null);
+  fetchTracks(null,null);
+  playerStore.playlist = tracks
 });
 
 </script>
@@ -37,7 +38,7 @@ onMounted(() => {
     </div>
     <!-- // если всё ок, рендерим треки:  -->
     <div v-else class="content__playlist playlist">
-      <TrackItem v-for="track in tracks" :key="track.id" :track="track" />
+      <TrackItem v-for="track in playerStore.playlist" :key="track.id" :track="track" />
     </div>
   </div>
 </template>

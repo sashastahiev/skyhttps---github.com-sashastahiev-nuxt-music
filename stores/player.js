@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
-
+import { useTracks } from "~~/composables/useTracks";
+const { fetchTracks, tracks } = useTracks();
 export const usePlayerStore = defineStore("player", {
   state: () => ({
     // Текущий трек
@@ -28,8 +29,10 @@ export const usePlayerStore = defineStore("player", {
       this.author = author;
     },
     // Установить плейлист
-    setPlaylist(tracks) {
+    setPlaylist(item, category) {
+      fetchTracks(item,category);
       this.playlist = tracks;
+      console.log(this.playlist)
     },
 
     // Установить прогресс

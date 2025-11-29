@@ -7,7 +7,7 @@ export const useTracks = () => {
   const loading = ref(false);
   const error = ref(null);
 
-  const fetchTracks = async () => {
+  const fetchTracks = async (form, category) => {
     loading.value = true;
     error.value = null;
     try {
@@ -17,6 +17,19 @@ export const useTracks = () => {
       }
       const data = await response.json();
       tracks.value = data.data;
+      if (category == 'author')
+      {
+        tracks.value = tracks.value.filter((item) => item.author == form)
+      }
+      if (category == 'year')
+      {
+        tracks.value = tracks.value.filter((item) => item.release_date == form)
+      }
+      if (category == 'genre')
+      {
+        tracks.value = tracks.value.filter((item) => item.genre.toLowerCase().trim() == form.toLowerCase().trim())
+        console.log(tracks.value.genre);
+      }
     } catch (e) {
       error.value =
         e instanceof Error ? e.message : "Ошибка при загрузке треков :(";

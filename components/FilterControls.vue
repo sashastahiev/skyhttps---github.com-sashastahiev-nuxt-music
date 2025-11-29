@@ -1,4 +1,6 @@
 <script setup>
+import { useTracks } from '~~/composables/useTracks';
+import { usePlayerStore } from '~~/stores/player';
 const {
   data: response,
   loading,
@@ -6,7 +8,7 @@ const {
 } = await useFetch(
   "https://webdev-music-003b5b991590.herokuapp.com/catalog/track/all/"
 );
-
+const {fetchTracks} = useTracks();
 // если в value нет data, то записываем в tracks пустой массив
 const tracks = computed(() => response.value?.data || []);
 const activeFilter = ref(null);
@@ -61,6 +63,7 @@ const genreItems = computed(() => {
     return a.localeCompare(b);
   });
 });
+const {setPlaylist} = usePlayerStore();
 </script>
 
 <template>
@@ -78,7 +81,7 @@ const genreItems = computed(() => {
       <div v-show="activeFilter === 'author'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in authorItems" :key="item" class="filter__item">
-            {{ item }}
+            <div @click="setPlaylist(item,'author')">{{ item }}</div>
           </li>
         </ul>
       </div>
@@ -93,8 +96,8 @@ const genreItems = computed(() => {
       </div>
       <div v-show="activeFilter === 'year'" class="filter__dropdown">
         <ul class="filter__list">
-          <li v-for="item in yearItems" :key="item" class="filter__item" @click="yearItems()">
-            {{ item }}
+          <li v-for="item in yearItems" :key="item" class="filter__item">
+            <div @click="setPlaylist(item,'year')">{{ item }}</div>
           </li>
         </ul>
       </div>
@@ -110,7 +113,7 @@ const genreItems = computed(() => {
       <div v-show="activeFilter === 'genre'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in genreItems" :key="item" class="filter__item">
-            {{ item }}
+            <div @click="setPlaylist(item,'genre')">{{ item }}</div>
           </li>
         </ul>
       </div>
@@ -174,6 +177,7 @@ const genreItems = computed(() => {
   margin: 5px 0 5px 0;
   padding: 5px;
   border-radius: 10px;
+  cursor: pointer;
 }
 .filter__item:hover{
   background-color: rgb(88, 84, 84);

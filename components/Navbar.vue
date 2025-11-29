@@ -1,14 +1,25 @@
+<script setup>
+import { ref } from 'vue';
+
+// Реактивное состояние видимости
+const isVisible = ref(false);
+
+// Метод переключения
+const toggleVisibility = () => {
+  isVisible.value = !isVisible.value;
+};
+</script>
 <template>
   <nav class="main__nav nav">
     <div class="nav__logo logo">
-      <img class="logo__image" src="/img/logo.png" />
+      <img class="logo__image" src="/images/logo.png" />
     </div>
-    <div class="nav__burger burger">
+    <div class="nav__burger burger" @click="toggleVisibility">
       <span class="burger__line"></span>
       <span class="burger__line"></span>
       <span class="burger__line"></span>
     </div>
-    <div class="nav__menu menu">
+    <div v-show="isVisible" class="nav__menu menu">
       <ul class="menu__list">
         <li class="menu__item">
           <a href="#" class="menu__link">Главное</a>
@@ -31,7 +42,6 @@
   background-color: #181818;
   padding: 20px 0 20px 36px;
 }
-
 /* Стиль контейнера логотипа */
 .nav__logo {
   width: 113.33px;
@@ -56,6 +66,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 /* Линия гамбургера */
@@ -65,13 +76,6 @@
   height: 1px;
   background-color: #d3d3d3;
 }
-
-/* Меню навигации */
-.nav__menu {
-  display: block;
-  visibility: visible;
-}
-
 /* Список пунктов меню */
 .menu__list {
   padding: 18px 0 10px 0;
@@ -89,5 +93,10 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+/* Состояние при видимости (оба блока) */
+.content-block {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>

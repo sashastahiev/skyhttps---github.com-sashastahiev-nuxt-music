@@ -38,7 +38,7 @@ body {
 .wrapper {
   width: 100%;
   min-height: 100%;
-  overflow: hidden;
+  overflow:hidden;
   background-color: #383838;
 }
 
@@ -326,7 +326,7 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y:auto;
 }
 
 .playlist-title__col {

@@ -1,0 +1,82 @@
+import { usePlayerStore } from "../stores/player.js";
+import { watchEffect } from 'vue';
+
+export function useAudioPlayer() {
+  // Получаем store, чтобы менять данные в хранилище
+  const playerStore = usePlayerStore();
+
+  // Инициализируем плеер в самом начале
+  const initPlayer = (element) => {
+    if (!element) {
+      console.error("Плеера нет :(");
+      return;
+    }
+    playerStore.setAudioRef(element);
+  };
+
+  // Воспроизводим трек
+  const playTrack = async (track) => {
+    if (!playerStore.audioRef) {
+      console.error("Плеер не инициализирован");
+      return;
+    }
+    try {
+      playerStore.audioRef.src = track;
+      await playerStore.audioRef.play();
+      playerStore.setPlaying(true);
+    } catch (error) {
+      console.error("Ошибка воспроизведения:", error);
+      playerStore.setPlaying(false);
+    }
+  };
+  //Управление воспроизведения и остановки трека
+  const togglePlay = (isPlaying) => {
+      if (isPlaying){
+        playerStore.audioRef.pause()
+        playerStore.setPlaying(false)
+      }
+      else {
+        playerStore.audioRef.play()
+        playerStore.setPlaying(true)
+      }
+  }
+// Обновляем прогресс трека
+  const handleTimeUpdate = () => {
+    if (!playerStore.audioRef) return;
+    const currentTime = playerStore.audioRef.currentTime;
+    const duration = playerStore.audioRef.duration;
+    if (duration) {
+      const progress = (currentTime / duration) * 100;
+      playerStore.setProgress(progress);
+    }
+  };
+  // Перематываем
+  const seekTo = (percentage) => {
+    if (!playerStore.audioRef || !playerStore.currentTrack) return;
+    const newTime = (percentage / 100) * playerStore.audioRef.duration;
+    playerStore.audioRef.currentTime = newTime;
+    playerStore.setProgress(percentage);
+  };
+
+
+  // Меняем громкость
+  const updateVolume = () => {
+    if (!playerStore.audioRef) return;
+    playerStore.audioRef.volume = playerStore.volume / 100;
+  };
+  watchEffect(() => {
+      if (playerStore.progress >= 100 && playerStore.isPlaying) {
+         playerStore.setPlaying(false);
+         playerStore.setProgress(0);
+      }
+   });
+
+  return {
+    initPlayer,
+    playTrack,
+    handleTimeUpdate,
+    seekTo,
+    updateVolume,
+    togglePlay,
+  };
+}

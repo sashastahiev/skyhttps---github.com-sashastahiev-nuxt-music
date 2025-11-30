@@ -30,9 +30,9 @@ export const usePlayerStore = defineStore("player", {
     },
     // Установить плейлист
     setPlaylist(item, category) {
+      // метод замены плейлиста доработанный
       fetchTracks(item,category);
       this.playlist = tracks;
-      console.log(this.playlist)
     },
 
     // Установить прогресс

@@ -39,6 +39,7 @@ onMounted(() => {
     <!-- // если всё ок, рендерим треки:  -->
     <div v-else class="content__playlist playlist">
       <TrackItem v-for="track in playerStore.playlist" :key="track.id" :track="track" />
+      <!-- измененная строка -->
     </div>
   </div>
 </template>

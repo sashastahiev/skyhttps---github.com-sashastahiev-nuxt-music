@@ -1,4 +1,5 @@
 <template>
+<!-- страница авторизации -->
     <div class="login">
         <fieldset class="login-window">
             <img class="login-window_logo" src="../public/images/logo_modal.png"/>

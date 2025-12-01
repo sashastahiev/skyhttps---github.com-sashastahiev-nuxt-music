@@ -20,9 +20,12 @@ const { playTrack } = useAudioPlayer()
     <div class="playlist__track track">
       <div class="track__title">
         <div class="track__title-image">
-          <svg class="track__title-svg">
+          <svg v-show="!track.chosen" class="track__title-svg">
             <use xlink:href="/images/icon/sprite.svg#icon-note"></use>
           </svg>
+          <div v-show="track.chosen" class="icon" :class="{ 'pulse-active': playerStore.isPlaying }">
+            <div class="dot"></div>
+          </div>
         </div>
         <div class="track__title-text">
           <a class="track__title-link" href="#"
@@ -52,5 +55,37 @@ const { playTrack } = useAudioPlayer()
 .playlist__item:hover{
   background-color: rgb(69, 70, 70);
   transition: 0.5s;
+}
+.track__title-image{
+  position: relative;
+}
+.icon .dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: rgba(182, 114, 255, 1);
+  border-radius: 50%;
+  left: 18px;
+  top: 18px;
+  display: inline-block;
+}
+
+.pulse-active .dot {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 </style>

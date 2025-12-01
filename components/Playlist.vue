@@ -16,7 +16,11 @@ onMounted(() => {
   fetchTracks(null,null);
   playerStore.playlist = tracks
 });
-
+// watchEffect(() => {
+//   if (playerStore.playlist){
+//     console.log(playerStore.playlist[0].chosen)
+//   }
+// })
 </script>
 <template>
   <div class="centerblock__content playlist-content">

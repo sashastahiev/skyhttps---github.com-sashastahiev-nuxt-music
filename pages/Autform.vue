@@ -2,7 +2,12 @@
 <!-- страница авторизации -->
     <div class="login">
         <fieldset class="login-window">
-            <img class="login-window_logo" src="../public/images/logo_modal.png"/>
+             <NuxtImg
+              alt="логотип Skypro"
+              :placeholder="[5]"
+              src="../public/images/logo_modal.png"
+              class="login-window_logo"
+            />
             <input placeholder="Почта" class="login-window_mail"/>
             <input placeholder="Пароль" class="login-window_password"/>
             <button class="login-window_sing-in">Войти</button>

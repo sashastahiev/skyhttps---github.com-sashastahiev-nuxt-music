@@ -12,28 +12,31 @@
       <div class="sidebar__list">
         <div class="sidebar__item">
           <a class="sidebar__link" href="#">
-            <img
-              class="sidebar__img"
+            <NuxtImg
+              alt="day's playlist"
+              :placeholder="[5]"
               src="/images/playlist01.png"
-              alt="day's playlist"
+              class="sidebar__img"
             />
           </a>
         </div>
         <div class="sidebar__item">
           <a class="sidebar__link" href="#">
-            <img
-              class="sidebar__img"
+            <NuxtImg
+              alt="day's playlist"
+              :placeholder="[5]"
               src="/images/playlist02.png"
-              alt="day's playlist"
+              class="sidebar__img"
             />
           </a>
         </div>
         <div class="sidebar__item">
           <a class="sidebar__link" href="#">
-            <img
-              class="sidebar__img"
-              src="/images/playlist03.png"
+            <NuxtImg
               alt="day's playlist"
+              :placeholder="[5]"
+              src="/images/playlist03.png"
+              class="sidebar__img"
             />
           </a>
         </div>

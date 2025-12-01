@@ -5,7 +5,7 @@ import { ref } from "vue";
 const targetEl = ref(null);
 const playerStore = usePlayerStore();
 const audioRef = ref(null);
-const { handleTimeUpdate, seekTo, updateVolume, initPlayer, togglePlay } =
+const { handleTimeUpdate, seekTo, updateVolume, initPlayer, togglePlay, playTrack } =
   useAudioPlayer();
 onMounted(() => {
   initPlayer(audioRef.value);
@@ -38,7 +38,8 @@ const handleProgressClick = (event) => {
       <div class="bar__player-block">
         <div class="bar__player player">
           <div class="player__controls">
-            <div class="player__btn-prev">
+            <div class="player__btn-prev"
+              @click="[playerStore.setPrevTrack(), playTrack(playerStore.currentTrack)]">
               <svg class="player__btn-prev-svg">
                 <use xlink:href="/images/icon/sprite.svg#icon-prev"></use>
               </svg>
@@ -54,7 +55,8 @@ const handleProgressClick = (event) => {
                 ></use>
               </svg>
             </div>
-            <div class="player__btn-next">
+            <div class="player__btn-next" 
+            @click="[playerStore.setNextTrack(), playTrack(playerStore.currentTrack)]">
               <svg class="player__btn-next-svg">
                 <use xlink:href="/images/icon/sprite.svg#icon-next"></use>
               </svg>
@@ -190,6 +192,7 @@ const handleProgressClick = (event) => {
   display: flex;
   align-items: center;
   margin-right: 23px;
+  cursor: pointer;
 }
 
 .player__btn-prev-svg {
@@ -216,6 +219,7 @@ const handleProgressClick = (event) => {
   align-items: center;
   margin-right: 28px;
   fill: #a53939;
+  cursor: pointer;
 }
 
 .player__btn-next-svg {
@@ -231,7 +235,6 @@ const handleProgressClick = (event) => {
   align-items: center;
   margin-right: 24px;
 }
-
 .player__btn-repeat-svg {
   width: 18px;
   height: 12px;

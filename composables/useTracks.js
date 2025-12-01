@@ -28,8 +28,9 @@ export const useTracks = () => {
       if (category == 'genre')
       {
         tracks.value = tracks.value.filter((item) => item.genre.toLowerCase().trim() == form.toLowerCase().trim())
-        console.log(tracks.value.genre);
       }
+      tracks.value.sort((a, b) => a._id - b._id);
+
     } catch (e) {
       error.value =
         e instanceof Error ? e.message : "Ошибка при загрузке треков :(";

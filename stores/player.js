@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import { useTracks } from "~~/composables/useTracks";
-import { useAudioPlayer } from "~~/composables/useAudioPlayer";
 const { fetchTracks, tracks } = useTracks();
-const { playTrack } = useAudioPlayer
+
 export const usePlayerStore = defineStore("player", {
   state: () => ({
     // Текущий трек
@@ -21,21 +20,38 @@ export const usePlayerStore = defineStore("player", {
     author: null,
     //Ссылка на альбом
     album: null,
+    //Ссылка на номер трека
+    number: null,
+    //Обьект следующего трека в плейлисте
+    nextTrack: null,
   }),
 
   actions: {
     //Переключить на следующий трек
     setNextTrack(){
-      this.currentTrack++;
-      this.album++;
-      this.author++;
-      playTrack();
+      if (this.number < Math.max(...this.playlist.map(item => item._id))){
+        this.nextTrack = this.playlist.find(element => element._id === this.number + 1);
+        this.number++;
+        this.currentTrack = this.nextTrack.track_file;
+        this.album = this.nextTrack.album;
+        this.author = this.nextTrack.author;
+      }
+    },
+    setPrevTrack(){
+      if ( this.number > Math.min(...this.playlist.map(item => item._id))){
+        this.nextTrack = this.playlist.find(element => element._id === this.number - 1);
+        this.number--;
+        this.currentTrack = this.nextTrack.track_file;
+        this.album = this.nextTrack.album;
+        this.author = this.nextTrack.author;
+      }
     },
     // Установить текущий трек
-    setCurrentTrack(track, album, author) {
+    setCurrentTrack(track, album, author, id) {
       this.currentTrack = track;
       this.album = album;
       this.author = author;
+      this.number = id;
     },
     // Установить плейлист
     setPlaylist(item, category) {

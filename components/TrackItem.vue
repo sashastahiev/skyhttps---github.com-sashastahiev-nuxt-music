@@ -9,11 +9,14 @@ const props = defineProps({
   },
 });
 const { formatDuration } = useTracks()
-const { setCurrentTrack } = usePlayerStore()
+// const { setCurrentTrack } = usePlayerStore()
+const playerStore = usePlayerStore()
 const { playTrack } = useAudioPlayer()
 </script>
 <template>
-  <div class="playlist__item" @click="[setCurrentTrack(track.track_file, track.album, track.author), playTrack(track.track_file)]">
+  <div class="playlist__item" 
+    @click="[playerStore.setCurrentTrack(track.track_file, track.album, track.author, track._id), 
+    playTrack(track.track_file)]">
     <div class="playlist__track track">
       <div class="track__title">
         <div class="track__title-image">

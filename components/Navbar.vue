@@ -12,7 +12,12 @@ const toggleVisibility = () => {
 <template>
   <nav class="main__nav nav">
     <div class="nav__logo logo">
-      <img class="logo__image" src="/images/logo.png" />
+       <NuxtImg
+      alt="логотип Skypro Music"
+      :placeholder="[5]"
+      src="/images/logo.png"
+      class="logo__image"
+      />
     </div>
     <div class="nav__burger burger" @click="toggleVisibility">
       <span class="burger__line"></span>

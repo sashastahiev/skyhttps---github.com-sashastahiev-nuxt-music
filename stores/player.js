@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { useTracks } from "~~/composables/useTracks";
+import { useAudioPlayer } from "~~/composables/useAudioPlayer";
 const { fetchTracks, tracks } = useTracks();
+const { playTrack } = useAudioPlayer
 export const usePlayerStore = defineStore("player", {
   state: () => ({
     // Текущий трек
@@ -22,6 +24,13 @@ export const usePlayerStore = defineStore("player", {
   }),
 
   actions: {
+    //Переключить на следующий трек
+    setNextTrack(){
+      this.currentTrack++;
+      this.album++;
+      this.author++;
+      playTrack();
+    },
     // Установить текущий трек
     setCurrentTrack(track, album, author) {
       this.currentTrack = track;

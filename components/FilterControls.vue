@@ -1,5 +1,4 @@
 <script setup>
-import { useTracks } from '~~/composables/useTracks';
 import { usePlayerStore } from '~~/stores/player';
 const {
   data: response,
@@ -8,7 +7,6 @@ const {
 } = await useFetch(
   "https://webdev-music-003b5b991590.herokuapp.com/catalog/track/all/"
 );
-const {fetchTracks} = useTracks();
 // если в value нет data, то записываем в tracks пустой массив
 const tracks = computed(() => response.value?.data || []);
 const activeFilter = ref(null);

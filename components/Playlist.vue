@@ -2,12 +2,12 @@
 import {useTracks} from '../composables/useTracks.js'
 import { usePlayerStore } from '~~/stores/player.js';
 import TrackItem from "../components/TrackItem.vue"
-const props = defineProps({
-  track: {
-    type: Object,
-    required: true,
-  },
-});
+// const props = defineProps({
+//   track: {
+//     type: Object,
+//     required: true,
+//   },
+// });
 const { fetchTracks, tracks, loading, error } = useTracks();
 const playerStore = usePlayerStore();
 onMounted(() => {

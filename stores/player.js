@@ -24,12 +24,24 @@ export const usePlayerStore = defineStore("player", {
     number: null,
     //Обьект следующего трека в плейлисте
     nextTrack: null,
+    //Индикатор перемешивания треков
+    shuffle: false,
   }),
 
   actions: {
     //Переключить на следующий трек
     setNextTrack(){
-      if (this.number < Math.max(...this.playlist.map(item => item._id))){
+      if (this.shuffle){
+        const max =  Math.max(...this.playlist.map(item => item._id));
+        const min =  Math.min(...this.playlist.map(item => item._id))
+        const rand = Math.floor(Math.random() * (max - min + 1)) + min;
+        this.nextTrack = this.playlist.find(element => element._id === rand);
+        this.number = rand;
+        this.currentTrack = this.nextTrack.track_file;
+        this.album = this.nextTrack.album;
+        this.author = this.nextTrack.author;
+      }
+      else if (this.number < Math.max(...this.playlist.map(item => item._id))){
         this.nextTrack = this.playlist.find(element => element._id === this.number + 1);
         this.number++;
         this.currentTrack = this.nextTrack.track_file;
@@ -69,7 +81,11 @@ export const usePlayerStore = defineStore("player", {
     setVolume(volume) {
       this.volume = volume;
     },
-
+    //Установить состояние перемешивания
+    setShuffle() {
+      this.shuffle = !this.shuffle;
+      console.log(this.shuffle)
+    },
     // Установить состояние воспроизведения
     setPlaying(isPlaying) {
       this.isPlaying = isPlaying;

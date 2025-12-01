@@ -57,8 +57,6 @@ export function useAudioPlayer() {
     playerStore.audioRef.currentTime = newTime;
     playerStore.setProgress(percentage);
   };
-
-
   // Меняем громкость
   const updateVolume = () => {
     if (!playerStore.audioRef) return;

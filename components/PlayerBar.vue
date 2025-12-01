@@ -1,7 +1,7 @@
 <script setup>
 import { usePlayerStore } from "../stores/player";
 import { useAudioPlayer } from "../composables/useAudioPlayer";
-import { ref } from "vue";
+import { ref, watch, watchEffect } from "vue";
 const targetEl = ref(null);
 const playerStore = usePlayerStore();
 const audioRef = ref(null);
@@ -25,6 +25,11 @@ const handleProgressClick = (event) => {
   // передаём это значение в хук, чтобы он обновил значение в хранилище
   seekTo(percentage);
 };
+watchEffect(() => 
+{
+  if (playerStore.shuffle)
+    console.log(playerStore.shuffle)
+});
 </script>
 <template>
   <div class="bar">
@@ -66,7 +71,7 @@ const handleProgressClick = (event) => {
                 <use xlink:href="/images/icon/sprite.svg#icon-repeat"></use>
               </svg>
             </div>
-            <div class="player__btn-shuffle _btn-icon">
+            <div class="player__btn-shuffle _btn-icon"  @click="playerStore.setShuffle()">
               <svg class="player__btn-shuffle-svg">
                 <use xlink:href="/images/icon/sprite.svg#icon-shuffle"></use>
               </svg>
@@ -246,6 +251,7 @@ const handleProgressClick = (event) => {
   padding: 5px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .player__btn-shuffle-svg {

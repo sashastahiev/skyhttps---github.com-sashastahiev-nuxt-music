@@ -31,19 +31,8 @@ export const usePlayerStore = defineStore("player", {
   actions: {
     //Переключить на следующий трек
     setNextTrack(){
-      if (this.shuffle){
-        const max =  Math.max(...this.playlist.map(item => item._id));
-        const rand = Math.floor(Math.random() * (max + 1));
-        this.nextTrack = this.playlist.find(element => element._id === rand);
-        this.number = rand;
-        this.currentTrack = this.nextTrack.track_file;
-        this.album = this.nextTrack.album;
-        this.author = this.nextTrack.author;
-      }
-      else if (this.number < Math.max(...this.playlist.map(item => item._id))){
-        if (this.number){
-          this.playlist[this.number].chosen = false;
-        }
+      if (this.number < Math.max(...this.playlist.map(item => item._id))){
+        this.playlist[this.number].chosen = false;
         this.nextTrack = this.playlist.find(element => element._id === this.number + 1);
         this.number++;
         this.currentTrack = this.nextTrack.track_file;
@@ -54,9 +43,7 @@ export const usePlayerStore = defineStore("player", {
     },
     setPrevTrack(){
       if ( this.number > 0){
-        if (this.number){
-          this.playlist[this.number].chosen = false;
-        }
+        this.playlist[this.number].chosen = false;
         this.nextTrack = this.playlist.find(element => element._id === this.number - 1);
         this.number--;
         this.currentTrack = this.nextTrack.track_file;
@@ -74,6 +61,7 @@ export const usePlayerStore = defineStore("player", {
       this.album = album;
       this.author = author;
       this.number = id;
+      this.playlist[0].chosen = false;
       this.playlist[id].chosen = true;
     },
     // Установить плейлист

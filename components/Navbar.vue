@@ -33,7 +33,9 @@ const toggleVisibility = () => {
           <a href="#" class="menu__link">Мой плейлист</a>
         </li>
         <li class="menu__item">
-          <a href="../signin.html" class="menu__link">Войти</a>
+          <NuxtLink class="menu__link" to="/Authform">
+            Войти
+          </NuxtLink>
         </li>
       </ul>
     </div>
@@ -98,6 +100,7 @@ const toggleVisibility = () => {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+  cursor: pointer;
 }
 /* Состояние при видимости (оба блока) */
 .content-block {

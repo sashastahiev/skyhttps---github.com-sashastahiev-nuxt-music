@@ -15,14 +15,6 @@ onMounted(() => {
   fetchTracks(null,null);
   playerStore.playlist = tracks
 });
-// watchEffect(() => {
-//   if (playerStore.playlist){
-//     console.log(playerStore.playlist)
-//     playerStore.playlist.forEach(element => {
-//         console.log(element._id);
-//     });
-//   }
-// })
 </script>
 <template>
   <div class="centerblock__content playlist-content">

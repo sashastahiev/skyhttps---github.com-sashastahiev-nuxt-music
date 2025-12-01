@@ -33,8 +33,7 @@ export const usePlayerStore = defineStore("player", {
     setNextTrack(){
       if (this.shuffle){
         const max =  Math.max(...this.playlist.map(item => item._id));
-        const min =  Math.min(...this.playlist.map(item => item._id));
-        const rand = Math.floor(Math.random() * (max - min + 1)) + min;
+        const rand = Math.floor(Math.random() * (max + 1));
         this.nextTrack = this.playlist.find(element => element._id === rand);
         this.number = rand;
         this.currentTrack = this.nextTrack.track_file;
@@ -42,43 +41,40 @@ export const usePlayerStore = defineStore("player", {
         this.author = this.nextTrack.author;
       }
       else if (this.number < Math.max(...this.playlist.map(item => item._id))){
-        const min =  Math.min(...this.playlist.map(item => item._id))
         if (this.number){
-          this.playlist[this.number - min].chosen = false;
+          this.playlist[this.number].chosen = false;
         }
         this.nextTrack = this.playlist.find(element => element._id === this.number + 1);
         this.number++;
         this.currentTrack = this.nextTrack.track_file;
         this.album = this.nextTrack.album;
         this.author = this.nextTrack.author;
-        this.playlist[this.number - min].chosen = true;
+        this.playlist[this.number].chosen = true;
       }
     },
     setPrevTrack(){
-      if ( this.number > Math.min(...this.playlist.map(item => item._id))){
-        const min =  Math.min(...this.playlist.map(item => item._id))
+      if ( this.number > 0){
         if (this.number){
-          this.playlist[this.number - min].chosen = false;
+          this.playlist[this.number].chosen = false;
         }
         this.nextTrack = this.playlist.find(element => element._id === this.number - 1);
         this.number--;
         this.currentTrack = this.nextTrack.track_file;
         this.album = this.nextTrack.album;
         this.author = this.nextTrack.author;
-        this.playlist[this.number - min].chosen = true;
+        this.playlist[this.number].chosen = true;
       }
     },
     // Установить текущий трек
     setCurrentTrack(track, album, author, id) {
-      const min =  Math.min(...this.playlist.map(item => item._id))
       if (this.number){
-        this.playlist[this.number - min].chosen = false;
+        this.playlist[this.number].chosen = false;
       }
       this.currentTrack = track;
       this.album = album;
       this.author = author;
       this.number = id;
-      this.playlist[id - min].chosen = true;
+      this.playlist[id].chosen = true;
     },
     // Установить плейлист
     setPlaylist(item, category) {

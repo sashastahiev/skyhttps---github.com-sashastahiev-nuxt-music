@@ -30,9 +30,12 @@ export const useTracks = () => {
         tracks.value = tracks.value.filter((item) => item.genre.toLowerCase().trim() == form.toLowerCase().trim())
       }
       tracks.value.sort((a, b) => a._id - b._id);
-      tracks.value.forEach(item => { 
+      let count = 0;
+      tracks.value.forEach((item) => {
         item.chosen = false;
-      });
+        item._id = count;
+        count++;
+      })
     } catch (e) {
       error.value =
         e instanceof Error ? e.message : "Ошибка при загрузке треков :(";

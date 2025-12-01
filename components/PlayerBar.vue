@@ -1,7 +1,7 @@
 <script setup>
 import { usePlayerStore } from "../stores/player";
 import { useAudioPlayer } from "../composables/useAudioPlayer";
-import { ref, watch, watchEffect } from "vue";
+import { ref } from "vue";
 const targetEl = ref(null);
 const playerStore = usePlayerStore();
 const audioRef = ref(null);
@@ -25,11 +25,7 @@ const handleProgressClick = (event) => {
   // передаём это значение в хук, чтобы он обновил значение в хранилище
   seekTo(percentage);
 };
-watchEffect(() => 
-{
-  if (playerStore.shuffle)
-    console.log(playerStore.shuffle)
-});
+
 </script>
 <template>
   <div class="bar">

@@ -9,7 +9,6 @@ const props = defineProps({
   },
 });
 const { formatDuration } = useTracks()
-// const { setCurrentTrack } = usePlayerStore()
 const playerStore = usePlayerStore()
 const { playTrack } = useAudioPlayer()
 </script>

@@ -3,7 +3,6 @@ import {useTracks} from '../composables/useTracks.js'
 import { usePlayerStore } from '~~/stores/player.js';
 import TrackItem from "../components/TrackItem.vue"
 import { watchEffect } from 'vue';
-import { shouldHydrate } from 'pinia';
 // const props = defineProps({
 //   track: {
 //     type: Object,
@@ -18,7 +17,10 @@ onMounted(() => {
 });
 // watchEffect(() => {
 //   if (playerStore.playlist){
-//     console.log(playerStore.playlist[0].chosen)
+//     console.log(playerStore.playlist)
+//     playerStore.playlist.forEach(element => {
+//         console.log(element._id);
+//     });
 //   }
 // })
 </script>

@@ -84,7 +84,6 @@ export const usePlayerStore = defineStore("player", {
     //Установить состояние перемешивания
     setShuffle() {
       this.shuffle = !this.shuffle;
-      console.log(this.shuffle)
     },
     // Установить состояние воспроизведения
     setPlaying(isPlaying) {

@@ -1,12 +1,19 @@
 <script setup>
 import { usePlayerStore } from "../stores/player";
 import { useAudioPlayer } from "../composables/useAudioPlayer";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 const targetEl = ref(null);
 const playerStore = usePlayerStore();
 const audioRef = ref(null);
-const { handleTimeUpdate, seekTo, updateVolume, initPlayer, togglePlay, playTrack } =
-  useAudioPlayer();
+let itemTrack = ref(null);
+const {
+  handleTimeUpdate,
+  seekTo,
+  updateVolume,
+  initPlayer,
+  togglePlay,
+  playTrack,
+} = useAudioPlayer();
 onMounted(() => {
   initPlayer(audioRef.value);
 });
@@ -25,32 +32,71 @@ const handleProgressClick = (event) => {
   // передаём это значение в хук, чтобы он обновил значение в хранилище
   seekTo(percentage);
 };
-
+watchEffect(() => {
+  if (playerStore.progress >= 99.9 && playerStore.shuffle) {
+    if (playerStore.number === Math.max(...playerStore.playlist.map(item => item._id))){
+      itemTrack = playerStore.playlist[0];
+    }
+    else {
+      itemTrack = playerStore.playlist[playerStore.number + 1];
+    }
+    playerStore.setPlaying(false);
+    playerStore.setProgress(0);
+    playerStore.setCurrentTrack(itemTrack, itemTrack.album, itemTrack.author, itemTrack._id),
+    playTrack(itemTrack.track_file);
+    console.log(itemTrack)
+  }
+  else if (playerStore.progress >= 99.9 && !playerStore.shuffle){
+     playerStore.setPlaying(false);
+    playerStore.setProgress(0);
+  }
+});
 </script>
 <template>
   <div class="bar">
     <div class="bar__content">
-      <div class="bar__player-progress" ref="targetEl" @click="handleProgressClick($event)">
+      <div
+        class="bar__player-progress"
+        ref="targetEl"
+        @click="handleProgressClick($event)"
+      >
         <div
           class="bar__player-progress-line"
-          :style="{ width: playerStore.progress + '%' }">
-        </div>
+          :style="{ width: playerStore.progress + '%' }"
+        ></div>
       </div>
       <div class="bar__player-block">
         <div class="bar__player player">
           <div class="player__controls">
-            <div class="player__btn-prev"
-              @click="[playerStore.setPrevTrack(), playTrack(playerStore.currentTrack)]">
+            <div
+              class="player__btn-prev"
+              @click="
+                [
+                  playerStore.setPrevTrack(),
+                  playTrack(playerStore.currentTrack),
+                ]
+              "
+            >
               <svg class="player__btn-prev-svg">
                 <use xlink:href="/images/icon/sprite.svg#icon-prev"></use>
               </svg>
             </div>
-            <div class="player__btn-play _btn" @click="playerStore.author ? togglePlay(playerStore.isPlaying) : 
-              [playerStore.setCurrentTrack(
-                playerStore.playlist[0],
-                playerStore.playlist[0].album, 
-                playerStore.playlist[0].author,
-                playerStore.playlist[0]._id), playTrack(playerStore.playlist[0].track_file)]">
+            <div
+              class="player__btn-play _btn"
+              @click="
+                playerStore.author
+                  ? togglePlay(playerStore.isPlaying)
+                  : [
+                      playerStore.setCurrentTrack(
+                        playerStore.playlist[0],
+                        playerStore.playlist[0].album,
+                        playerStore.playlist[0].author,
+                        playerStore.playlist[0]._id
+                      ),
+                      playTrack(playerStore.playlist[0].track_file),
+                    ]
+              "
+            >
               <svg class="player__btn-play-svg">
                 <use
                   :xlink:href="
@@ -61,18 +107,28 @@ const handleProgressClick = (event) => {
                 ></use>
               </svg>
             </div>
-            <div class="player__btn-next" 
-            @click="[playerStore.setNextTrack(), playTrack(playerStore.currentTrack)]">
+            <div
+              class="player__btn-next"
+              @click="
+                [
+                  playerStore.setNextTrack(),
+                  playTrack(playerStore.currentTrack),
+                ]
+              "
+            >
               <svg class="player__btn-next-svg">
                 <use xlink:href="/images/icon/sprite.svg#icon-next"></use>
               </svg>
             </div>
-            <div class="player__btn-repeat _btn-icon">
-              <svg class="player__btn-repeat-svg">
+            <div class="player__btn-repeat _btn-icon" 
+              @click="playerStore.setShuffle()">
+              <svg class="player__btn-repeat-svg" :class="playerStore.shuffle ? 'rotating-svg' : ''">
                 <use xlink:href="/images/icon/sprite.svg#icon-repeat"></use>
               </svg>
             </div>
-            <div class="player__btn-shuffle _btn-icon"  @click="playerStore.setShuffle()">
+            <div
+              class="player__btn-shuffle _btn-icon"
+            >
               <svg class="player__btn-shuffle-svg">
                 <use xlink:href="/images/icon/sprite.svg#icon-shuffle"></use>
               </svg>
@@ -168,16 +224,16 @@ const handleProgressClick = (event) => {
   align-items: center;
   justify-content: flex-start;
 }
-.bar__player-progress-line{
-  position:absolute;
+.bar__player-progress-line {
+  position: absolute;
   top: 0px;
   left: 0px;
   background-color: rgb(233, 69, 69);
   height: 5px;
   z-index: 10;
 }
-.bar__player-progress-line::after{
-  content:"";
+.bar__player-progress-line::after {
+  content: "";
   width: 10px;
   height: 10px;
   display: block;
@@ -187,5 +243,12 @@ const handleProgressClick = (event) => {
   margin-top: -3px;
   margin-left: 100%;
 }
+.rotating-svg {
+  animation: rotate 4s linear infinite;
+}
 
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
 </style>

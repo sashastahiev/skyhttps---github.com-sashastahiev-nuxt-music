@@ -62,13 +62,6 @@ export function useAudioPlayer() {
     if (!playerStore.audioRef) return;
     playerStore.audioRef.volume = playerStore.volume / 100;
   };
-  watchEffect(() => {
-      if (playerStore.progress >= 100 && playerStore.isPlaying) {
-         playerStore.setPlaying(false);
-         playerStore.setProgress(0);
-      }
-   });
-
   return {
     initPlayer,
     playTrack,

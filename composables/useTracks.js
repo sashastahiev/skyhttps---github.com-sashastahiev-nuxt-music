@@ -17,15 +17,15 @@ export const useTracks = () => {
       }
       const data = await response.json();
       tracks.value = data.data;
-      if (category == 'author')
+      if (category === 'author')
       {
         tracks.value = tracks.value.filter((item) => item.author == form)
       }
-      if (category == 'year')
+      if (category === 'year')
       {
         tracks.value = tracks.value.filter((item) => item.release_date == form)
       }
-      if (category == 'genre')
+      if (category === 'genre')
       {
         tracks.value = tracks.value.filter((item) => item.genre.toLowerCase().trim() == form.toLowerCase().trim())
       }

@@ -33,6 +33,7 @@ const handleProgressClick = (event) => {
   seekTo(percentage);
 };
 watchEffect(() => {
+  //Метод для проигрывания плейлиста без взаимодействия
   if (playerStore.progress >= 99.9 && playerStore.shuffle) {
     if (playerStore.number === Math.max(...playerStore.playlist.map(item => item._id))){
       itemTrack = playerStore.playlist[0];
@@ -44,13 +45,24 @@ watchEffect(() => {
     playerStore.setProgress(0);
     playerStore.setCurrentTrack(itemTrack, itemTrack.album, itemTrack.author, itemTrack._id),
     playTrack(itemTrack.track_file);
-    console.log(itemTrack)
-  }
-  else if (playerStore.progress >= 99.9 && !playerStore.shuffle){
-     playerStore.setPlaying(false);
-    playerStore.setProgress(0);
   }
 });
+watchEffect(() => {
+  //Метод для проигрывания треков в случайном порядке
+  if (playerStore.progress >= 99.9 && playerStore.repeat){
+    itemTrack = playerStore.playlist[Math.floor(Math.random() * 26)];
+    playerStore.setPlaying(false);
+    playerStore.setProgress(0);
+    playerStore.setCurrentTrack(itemTrack, itemTrack.album, itemTrack.author, itemTrack._id),
+    playTrack(itemTrack.track_file)
+  }
+});
+watchEffect(() => {
+  if (playerStore.progress >= 99.9){
+    playerStore.setPlaying(false);
+    playerStore.setProgress(0);
+  }
+})
 </script>
 <template>
   <div class="bar">
@@ -70,13 +82,7 @@ watchEffect(() => {
           <div class="player__controls">
             <div
               class="player__btn-prev"
-              @click="
-                [
-                  playerStore.setPrevTrack(),
-                  playTrack(playerStore.currentTrack),
-                ]
-              "
-            >
+              @click="[playerStore.setPrevTrack(),playTrack(playerStore.currentTrack),]">
               <svg class="player__btn-prev-svg">
                 <use xlink:href="/images/icon/sprite.svg#icon-prev"></use>
               </svg>
@@ -109,12 +115,7 @@ watchEffect(() => {
             </div>
             <div
               class="player__btn-next"
-              @click="
-                [
-                  playerStore.setNextTrack(),
-                  playTrack(playerStore.currentTrack),
-                ]
-              "
+              @click="[playerStore.setNextTrack(), playTrack(playerStore.currentTrack),]"
             >
               <svg class="player__btn-next-svg">
                 <use xlink:href="/images/icon/sprite.svg#icon-next"></use>
@@ -126,10 +127,10 @@ watchEffect(() => {
                 <use xlink:href="/images/icon/sprite.svg#icon-repeat"></use>
               </svg>
             </div>
-            <div
-              class="player__btn-shuffle _btn-icon"
+            <div class="player__btn-shuffle _btn-icon"
+               @click="playerStore.setRepeat()"
             >
-              <svg class="player__btn-shuffle-svg">
+              <svg class="player__btn-shuffle-svg" :class="playerStore.repeat ? 'rotating-svg' : ''">
                 <use xlink:href="/images/icon/sprite.svg#icon-shuffle"></use>
               </svg>
             </div>

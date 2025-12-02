@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { useTracks } from "~~/composables/useTracks";
 const { fetchTracks, tracks } = useTracks();
-
 export const usePlayerStore = defineStore("player", {
   state: () => ({
     // Текущий трек
@@ -24,14 +23,16 @@ export const usePlayerStore = defineStore("player", {
     number: null,
     //Обьект следующего трека в плейлисте
     nextTrack: null,
-    //Индикатор перемешивания треков
+    //Индикатор повторения плейлиста
     shuffle: false,
+    //Индикатор перемешивания последовательности треков
+    repeat: false,
   }),
 
   actions: {
     //Переключить на следующий трек
     setNextTrack(){
-      if (this.number < Math.max(...this.playlist.map(item => item._id))){
+      if (this.number < Math.max(...this.playlist.map(item => item._id)) && !this.repeat){
         this.playlist[this.number].chosen = false;
         this.nextTrack = this.playlist.find(element => element._id === this.number + 1);
         this.number++;
@@ -81,9 +82,17 @@ export const usePlayerStore = defineStore("player", {
     setVolume(volume) {
       this.volume = volume;
     },
-    //Установить состояние перемешивания
+    //Установить состояние повторения
     setShuffle() {
       this.shuffle = !this.shuffle;
+      if (this.repeat)
+        this.repeat = false;
+    },
+    //Установить состояние перемешивания
+    setRepeat() {
+      this.repeat = !this.repeat;
+      if (this.shuffle)
+        this.shuffle = false;
     },
     // Установить состояние воспроизведения
     setPlaying(isPlaying) {

@@ -46,8 +46,6 @@ watchEffect(() => {
     playerStore.setCurrentTrack(itemTrack, itemTrack.album, itemTrack.author, itemTrack._id),
     playTrack(itemTrack.track_file);
   }
-});
-watchEffect(() => {
   //Метод для проигрывания треков в случайном порядке
   if (playerStore.progress >= 99.9 && playerStore.repeat){
     itemTrack = playerStore.playlist[Math.floor(Math.random() * 26)];
@@ -56,13 +54,11 @@ watchEffect(() => {
     playerStore.setCurrentTrack(itemTrack, itemTrack.album, itemTrack.author, itemTrack._id),
     playTrack(itemTrack.track_file)
   }
-});
-watchEffect(() => {
   if (playerStore.progress >= 99.9){
     playerStore.setPlaying(false);
     playerStore.setProgress(0);
   }
-})
+});
 </script>
 <template>
   <div class="bar">

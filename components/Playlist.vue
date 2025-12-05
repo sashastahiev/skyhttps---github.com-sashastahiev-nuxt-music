@@ -15,6 +15,21 @@ onMounted(() => {
   fetchTracks(null,null);
   playerStore.playlist = tracks
 });
+const handleKeydown = (event) => {
+  if (event.key === ' ') { // Space
+    if (playerStore.isPlaying){
+      playerStore.audioRef.pause();
+      playerStore.setPlaying(false)
+    } else {
+      playerStore.audioRef.play();
+      playerStore.setPlaying(true)
+    } 
+  }
+};
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown);
+});
+
 </script>
 <template>
   <div class="centerblock__content playlist-content">

@@ -34,7 +34,7 @@ const handleProgressClick = (event) => {
 };
 watchEffect(() => {
   //Метод для проигрывания плейлиста без взаимодействия
-  if (playerStore.progress >= 99.9 && playerStore.shuffle) {
+  if (playerStore.progress >= 99.9 && playerStore.repeat) {
     if (playerStore.number === Math.max(...playerStore.playlist.map(item => item._id))){
       itemTrack = playerStore.playlist[0];
     }
@@ -47,7 +47,7 @@ watchEffect(() => {
     playTrack(itemTrack.track_file);
   }
   //Метод для проигрывания треков в случайном порядке
-  if (playerStore.progress >= 99.9 && playerStore.repeat){
+  if (playerStore.progress >= 99.9 && playerStore.shuffle){
     itemTrack = playerStore.playlist[Math.floor(Math.random() * 26)];
     playerStore.setPlaying(false);
     playerStore.setProgress(0);
@@ -118,13 +118,13 @@ watchEffect(() => {
               </svg>
             </div>
             <div class="player__btn-repeat _btn-icon" 
-              @click="playerStore.setShuffle()">
+              @click="playerStore.setRepeat()">
               <svg class="player__btn-repeat-svg" :class="playerStore.shuffle ? 'rotating-svg' : ''">
                 <use xlink:href="/images/icon/sprite.svg#icon-repeat"></use>
               </svg>
             </div>
             <div class="player__btn-shuffle _btn-icon"
-               @click="playerStore.setRepeat()"
+               @click="playerStore.setShuffle()"
             >
               <svg class="player__btn-shuffle-svg" :class="playerStore.repeat ? 'rotating-svg' : ''">
                 <use xlink:href="/images/icon/sprite.svg#icon-shuffle"></use>

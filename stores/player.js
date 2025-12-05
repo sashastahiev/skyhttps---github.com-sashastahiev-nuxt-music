@@ -107,7 +107,16 @@ export const usePlayerStore = defineStore("player", {
     setPlaying(isPlaying) {
       this.isPlaying = isPlaying;
     },
-
+    //Установить активацию лайка
+    setActiveLike(id) {
+      if (this.playlist){
+        console.log(id)
+        if (this.playlist[id].LikeActive)
+          this.playlist[id].LikeActive = false;
+        else
+          this.playlist[id].LikeActive = true;
+      }
+    },
     // Установить ссылку на аудиоэлемент
     setAudioRef(element) {
       this.audioRef = element;

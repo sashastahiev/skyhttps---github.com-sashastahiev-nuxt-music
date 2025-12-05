@@ -31,6 +31,7 @@ export const useTracks = () => {
       tracks.value.forEach((item) => {
         item.chosen = false;
         item._id = count;
+        item.LikeActive = false;
         count++;
       })
     } catch (e) {

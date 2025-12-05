@@ -38,8 +38,8 @@ const { playTrack } = useAudioPlayer()
         <a class="track__album-link" href="http://">{{ track.album }}</a>
       </div>
       <div class="track__time">
-        <svg class="track__time-svg">
-          <use xlink:href="/images/icon/sprite.svg#icon-like"></use>
+        <svg class="track__time-svg" @click.stop="playerStore.setActiveLike(track._id)">
+          <use :xlink:href="!track.LikeActive ? '/images/icon/sprite.svg#icon-like' : '/images/icon/LikeActive.svg'"></use>
         </svg>
         <span class="track__time-text">{{ formatDuration(track.duration_in_seconds) }}</span>
       </div>
@@ -48,6 +48,11 @@ const { playTrack } = useAudioPlayer()
 </template>
 
 <style scoped>
+.track__time-svg{
+  width: 15px;
+  height: 13px;
+  cursor: pointer;
+}
 .playlist__item {
   cursor: pointer;
 }

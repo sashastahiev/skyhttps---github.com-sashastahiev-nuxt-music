@@ -27,9 +27,17 @@ export const usePlayerStore = defineStore("player", {
     shuffle: false,
     //Индикатор перемешивания последовательности треков
     repeat: false,
+    //Видимость плеера
+    isPlayBar: false,
+    //Название плейлиста
+    namePlaylist: null,
   }),
 
   actions: {
+    //Установить название плейлиста
+    setNamePlaylist(item){
+      this.namePlaylist = item;
+    },
     //Переключить на следующий трек
     setNextTrack(){
       if (this.number < Math.max(...this.playlist.map(item => item._id))){
@@ -64,6 +72,7 @@ export const usePlayerStore = defineStore("player", {
       this.number = id;
       this.playlist[0].chosen = false;
       this.playlist[id].chosen = true;
+      this.isPlayBar = true;
     },
     // Установить плейлист
     setPlaylist(item, category) {

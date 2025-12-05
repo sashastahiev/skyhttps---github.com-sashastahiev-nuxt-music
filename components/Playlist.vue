@@ -14,6 +14,7 @@ const playerStore = usePlayerStore();
 onMounted(() => {
   fetchTracks(null,null);
   playerStore.playlist = tracks
+  playerStore.setNamePlaylist('Треки');
 });
 const handleKeydown = (event) => {
   if (event.key === ' ') { // Space

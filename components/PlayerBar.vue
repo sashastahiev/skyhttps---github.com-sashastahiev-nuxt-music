@@ -61,7 +61,7 @@ watchEffect(() => {
 });
 </script>
 <template>
-  <div class="bar">
+  <div class="bar" v-show="playerStore.isPlayBar">
     <div class="bar__content">
       <div
         class="bar__player-progress"

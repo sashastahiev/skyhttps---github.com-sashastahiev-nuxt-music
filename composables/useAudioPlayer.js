@@ -13,7 +13,10 @@ export function useAudioPlayer() {
     }
     playerStore.setAudioRef(element);
   };
-
+  //Установить название плейлиста на странице
+  const setPlaylist = (item) => {
+    pla
+  }
   // Воспроизводим трек
   const playTrack = async (track) => {
     if (!playerStore.audioRef) {

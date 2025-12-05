@@ -1,3 +1,7 @@
+<script setup>
+import { usePlayerStore } from '../stores/player';
+const playerStore = usePlayerStore();
+</script>
 <template>
   <div class="main__sidebar sidebar">
     <div class="sidebar__personal">
@@ -17,6 +21,7 @@
               :placeholder="[5]"
               src="/images/playlist01.png"
               class="sidebar__img"
+              @click="playerStore.setNamePlaylist('Плейлист дня')"
             />
           </a>
         </div>
@@ -27,6 +32,7 @@
               :placeholder="[5]"
               src="/images/playlist02.png"
               class="sidebar__img"
+              @click="playerStore.setNamePlaylist('100 танцевальных хитов')"
             />
           </a>
         </div>
@@ -37,6 +43,7 @@
               :placeholder="[5]"
               src="/images/playlist03.png"
               class="sidebar__img"
+              @click="playerStore.setNamePlaylist('Инди заряд')"
             />
           </a>
         </div>

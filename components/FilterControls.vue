@@ -61,11 +61,11 @@ const genreItems = computed(() => {
     return a.localeCompare(b);
   });
 });
-const {setPlaylist} = usePlayerStore();
+const playerStore = usePlayerStore()
 </script>
 
 <template>
-  <h2 class="centerblock__h2">Треки</h2>
+  <h2 class="centerblock__h2">{{playerStore.namePlaylist}}</h2>
   <div class="centerblock__filter filter">
     <div class="filter__title">Искать по:</div>
     <div>
@@ -79,7 +79,7 @@ const {setPlaylist} = usePlayerStore();
       <div v-show="activeFilter === 'author'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in authorItems" :key="item" class="filter__item">
-            <div @click="setPlaylist(item,'author')">{{ item }}</div>
+            <div @click="playerStore.setPlaylist(item,'author')">{{ item }}</div>
           </li>
         </ul>
       </div>
@@ -95,7 +95,7 @@ const {setPlaylist} = usePlayerStore();
       <div v-show="activeFilter === 'year'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in yearItems" :key="item" class="filter__item">
-            <div @click="setPlaylist(item,'year')">{{ item }}</div>
+            <div @click="playerStore.setPlaylist(item,'year')">{{ item }}</div>
           </li>
         </ul>
       </div>
@@ -111,7 +111,7 @@ const {setPlaylist} = usePlayerStore();
       <div v-show="activeFilter === 'genre'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in genreItems" :key="item" class="filter__item">
-            <div @click="setPlaylist(item,'genre')">{{ item }}</div>
+            <div @click="playerStore.setPlaylist(item,'genre')">{{ item }}</div>
           </li>
         </ul>
       </div>
@@ -120,20 +120,60 @@ const {setPlaylist} = usePlayerStore();
 </template>
 
 <style scoped>
-
-.filter__list {
+.filter__dropdown{
   position: absolute;
-  max-height: 100px;
-  overflow-y:scroll;
+  background: rgba(49, 49, 49);
+  width: 248px;
+  min-height: auto;
+  max-height: 305px;
+  padding: 34px;
+  border-radius: 12px;
   margin-top: 10px;
+}
+.filter__list {
+  overflow-y:auto;
+  /* perfomer */
+  width: 248px;
+  min-height: auto;
+  max-height: 305px;
+  width: 180px;
+  height: 237px;
+  /* Автолейаут */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10;
+  background: rgba(49, 49, 49);
 }
 .filter__item{
   margin: 5px 0 5px 0;
   padding: 5px;
   border-radius: 10px;
   cursor: pointer;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 .filter__item:hover{
   background-color: rgb(88, 84, 84);
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6);
 }
 </style>

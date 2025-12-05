@@ -96,5 +96,22 @@ onMounted(() => {
     transform: rotate(360deg);
   }
 }
+::-webkit-scrollbar {
+  width: 4px;
+}
 
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
 </style>

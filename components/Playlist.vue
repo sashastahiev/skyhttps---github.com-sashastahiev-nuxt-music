@@ -2,7 +2,6 @@
 import {useTracks} from '../composables/useTracks.js'
 import { usePlayerStore } from '~~/stores/player.js';
 import TrackItem from "../components/TrackItem.vue"
-import { watchEffect } from 'vue';
 // const props = defineProps({
 //   track: {
 //     type: Object,

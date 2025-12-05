@@ -18,13 +18,13 @@ export const useTracks = () => {
       const data = await response.json();
       tracks.value = data.data;
       if (category === 'author'){
-        tracks.value = tracks.value.filter((item) => item.author == form)
+        tracks.value = tracks.value.filter((item) => item.author === form)
       }
       if (category === 'year'){
-        tracks.value = tracks.value.filter((item) => item.release_date == form)
+        tracks.value = tracks.value.filter((item) => item.release_date === form)
       }
       if (category === 'genre'){
-        tracks.value = tracks.value.filter((item) => item.genre.toLowerCase().trim() == form.toLowerCase().trim())
+        tracks.value = tracks.value.filter((item) => item.genre.toLowerCase().trim() === form.toLowerCase().trim())
       }
       tracks.value.sort((a, b) => a._id - b._id);
       let count = 0;

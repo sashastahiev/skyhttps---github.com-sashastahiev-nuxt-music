@@ -32,7 +32,7 @@ export const usePlayerStore = defineStore("player", {
   actions: {
     //Переключить на следующий трек
     setNextTrack(){
-      if (this.number < Math.max(...this.playlist.map(item => item._id)) && !this.repeat){
+      if (this.number < Math.max(...this.playlist.map(item => item._id))){
         this.playlist[this.number].chosen = false;
         this.nextTrack = this.playlist.find(element => element._id === this.number + 1);
         this.number++;

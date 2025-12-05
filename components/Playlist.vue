@@ -46,7 +46,7 @@ onMounted(() => {
 
 <style scoped>
 .playlist{
-  max-height: 700px;
+  max-height: 500px;
 }
 .loading{
   width: 100%;

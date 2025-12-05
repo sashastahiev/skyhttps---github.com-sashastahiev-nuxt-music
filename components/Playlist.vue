@@ -17,10 +17,10 @@ onMounted(() => {
 });
 const handleKeydown = (event) => {
   if (event.key === ' ') { // Space
-    if (playerStore.isPlaying){
+    if (playerStore.isPlaying && playerStore.audioRef){
       playerStore.audioRef.pause();
       playerStore.setPlaying(false)
-    } else {
+    } else if (!playerStore.isPlaying && playerStore.audioRef){
       playerStore.audioRef.play();
       playerStore.setPlaying(true)
     } 

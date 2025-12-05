@@ -119,14 +119,14 @@ watchEffect(() => {
             </div>
             <div class="player__btn-repeat _btn-icon" 
               @click="playerStore.setRepeat()">
-              <svg class="player__btn-repeat-svg" :class="playerStore.shuffle ? 'rotating-svg' : ''">
+              <svg class="player__btn-repeat-svg" :class="playerStore.repeat ? 'rotating-svg' : ''">
                 <use xlink:href="/images/icon/sprite.svg#icon-repeat"></use>
               </svg>
             </div>
             <div class="player__btn-shuffle _btn-icon"
                @click="playerStore.setShuffle()"
             >
-              <svg class="player__btn-shuffle-svg" :class="playerStore.repeat ? 'rotating-svg' : ''">
+              <svg class="player__btn-shuffle-svg" :class="playerStore.shuffle ? 'rotating-svg' : ''">
                 <use xlink:href="/images/icon/sprite.svg#icon-shuffle"></use>
               </svg>
             </div>

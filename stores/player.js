@@ -92,16 +92,16 @@ export const usePlayerStore = defineStore("player", {
       this.volume = volume;
     },
     //Установить состояние повторения
-    setShuffle() {
-      this.shuffle = !this.shuffle;
-      if (this.repeat)
-        this.repeat = false;
-    },
-    //Установить состояние перемешивания
     setRepeat() {
       this.repeat = !this.repeat;
       if (this.shuffle)
         this.shuffle = false;
+    },
+    //Установить состояние перемешивания
+    setShuffle() {
+      this.shuffle = !this.shuffle;
+      if (this.repeat)
+        this.repeat = false;
     },
     // Установить состояние воспроизведения
     setPlaying(isPlaying) {

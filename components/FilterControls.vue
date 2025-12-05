@@ -68,7 +68,7 @@ const playerStore = usePlayerStore()
   <h2 class="centerblock__h2">{{playerStore.namePlaylist}}</h2>
   <div class="centerblock__filter filter">
     <div class="filter__title">Искать по:</div>
-    <div>
+    <div class="itemFilter">
       <div
         class="filter__button button-author _btn-text"
         :class="{ active: activeFilter === 'author' }"
@@ -76,6 +76,7 @@ const playerStore = usePlayerStore()
       >
         исполнителю
       </div>
+      <div class="countItem">{{ authorItems.length }}</div>
       <div v-show="activeFilter === 'author'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in authorItems" :key="item" class="filter__item">
@@ -84,7 +85,7 @@ const playerStore = usePlayerStore()
         </ul>
       </div>
     </div>
-    <div>
+    <div class="itemFilter">
       <div
         class="filter__button button-year _btn-text"
         :class="{ active: activeFilter === 'year' }"
@@ -92,6 +93,7 @@ const playerStore = usePlayerStore()
       >
         году выпуска
       </div>
+      <div class="countItem">{{ yearItems.length }}</div>
       <div v-show="activeFilter === 'year'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in yearItems" :key="item" class="filter__item">
@@ -100,7 +102,7 @@ const playerStore = usePlayerStore()
         </ul>
       </div>
     </div>
-    <div>
+    <div class="itemFilter">
       <div
         class="filter__button button-genre _btn-text"
         :class="{ active: activeFilter === 'genre' }"
@@ -108,6 +110,7 @@ const playerStore = usePlayerStore()
       >
         жанру
       </div>
+      <div style="left: 70px;" class="countItem">{{ genreItems.length }}</div>
       <div v-show="activeFilter === 'genre'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in genreItems" :key="item" class="filter__item">
@@ -157,6 +160,23 @@ const playerStore = usePlayerStore()
 }
 .filter__item:hover{
   background-color: rgb(88, 84, 84);
+}
+.itemFilter{
+  position: relative;
+}
+.countItem{
+  position: absolute;
+  width: 26px;
+  height: 25.5px;
+  background-color: rgba(173, 97, 255, 1);
+  color:rgba(255, 255, 255, 1);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  left:120px;
+  bottom: 21.5px;
+ 
 }
 ::-webkit-scrollbar {
   width: 4px;

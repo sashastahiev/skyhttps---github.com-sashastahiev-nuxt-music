@@ -1,5 +1,4 @@
 <script setup>
-import { useTracks } from '~~/composables/useTracks';
 import { usePlayerStore } from '~~/stores/player';
 const {
   data: response,
@@ -8,7 +7,6 @@ const {
 } = await useFetch(
   "https://webdev-music-003b5b991590.herokuapp.com/catalog/track/all/"
 );
-const {fetchTracks} = useTracks();
 // если в value нет data, то записываем в tracks пустой массив
 const tracks = computed(() => response.value?.data || []);
 const activeFilter = ref(null);
@@ -63,14 +61,14 @@ const genreItems = computed(() => {
     return a.localeCompare(b);
   });
 });
-const {setPlaylist} = usePlayerStore();
+const playerStore = usePlayerStore()
 </script>
 
 <template>
-  <h2 class="centerblock__h2">Треки</h2>
+  <h2 class="centerblock__h2">{{playerStore.namePlaylist}}</h2>
   <div class="centerblock__filter filter">
     <div class="filter__title">Искать по:</div>
-    <div>
+    <div class="itemFilter">
       <div
         class="filter__button button-author _btn-text"
         :class="{ active: activeFilter === 'author' }"
@@ -78,15 +76,16 @@ const {setPlaylist} = usePlayerStore();
       >
         исполнителю
       </div>
+      <div class="countItem">{{ authorItems.length }}</div>
       <div v-show="activeFilter === 'author'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in authorItems" :key="item" class="filter__item">
-            <div @click="setPlaylist(item,'author')">{{ item }}</div>
+            <div @click="playerStore.setPlaylist(item,'author')">{{ item }}</div>
           </li>
         </ul>
       </div>
     </div>
-    <div>
+    <div class="itemFilter">
       <div
         class="filter__button button-year _btn-text"
         :class="{ active: activeFilter === 'year' }"
@@ -94,15 +93,16 @@ const {setPlaylist} = usePlayerStore();
       >
         году выпуска
       </div>
+      <div class="countItem">{{ yearItems.length }}</div>
       <div v-show="activeFilter === 'year'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in yearItems" :key="item" class="filter__item">
-            <div @click="setPlaylist(item,'year')">{{ item }}</div>
+            <div @click="playerStore.setPlaylist(item,'year')">{{ item }}</div>
           </li>
         </ul>
       </div>
     </div>
-    <div>
+    <div class="itemFilter">
       <div
         class="filter__button button-genre _btn-text"
         :class="{ active: activeFilter === 'genre' }"
@@ -110,10 +110,11 @@ const {setPlaylist} = usePlayerStore();
       >
         жанру
       </div>
+      <div style="left: 70px;" class="countItem">{{ genreItems.length }}</div>
       <div v-show="activeFilter === 'genre'" class="filter__dropdown">
         <ul class="filter__list">
           <li v-for="item in genreItems" :key="item" class="filter__item">
-            <div @click="setPlaylist(item,'genre')">{{ item }}</div>
+            <div @click="playerStore.setPlaylist(item,'genre')">{{ item }}</div>
           </li>
         </ul>
       </div>
@@ -122,64 +123,77 @@ const {setPlaylist} = usePlayerStore();
 </template>
 
 <style scoped>
-.centerblock__h2 {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 64px;
-  line-height: 72px;
-  letter-spacing: -0.8px;
-  margin-bottom: 45px;
-}
-
-.centerblock__filter {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 51px;
-}
-
-.filter__title {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  margin-right: 15px;
-}
-
-.filter__button {
-  position: relative;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  border: 1px solid #ffffff;
-  border-radius: 60px;
-  padding: 6px 20px;
-}
-
-.filter__button:not(:last-child) {
-  margin-right: 10px;
+.filter__dropdown{
+  position: absolute;
+  background: rgba(49, 49, 49);
+  width: 248px;
+  min-height: auto;
+  max-height: 305px;
+  padding: 34px;
+  border-radius: 12px;
+  margin-top: 10px;
 }
 .filter__list {
-  position: absolute;
-  max-height: 100px;
-  overflow-y:scroll;
-  margin-top: 10px;
+  overflow-y:auto;
+  /* perfomer */
+  width: 248px;
+  min-height: auto;
+  max-height: 305px;
+  width: 180px;
+  height: 237px;
+  /* Автолейаут */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10;
+  background: rgba(49, 49, 49);
 }
 .filter__item{
   margin: 5px 0 5px 0;
   padding: 5px;
   border-radius: 10px;
   cursor: pointer;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 .filter__item:hover{
   background-color: rgb(88, 84, 84);
+}
+.itemFilter{
+  position: relative;
+}
+.countItem{
+  position: absolute;
+  width: 26px;
+  height: 25.5px;
+  background-color: rgba(173, 97, 255, 1);
+  color:rgba(255, 255, 255, 1);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  left:120px;
+  bottom: 21.5px;
+ 
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6);
 }
 </style>

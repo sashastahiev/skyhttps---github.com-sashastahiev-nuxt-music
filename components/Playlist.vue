@@ -2,17 +2,32 @@
 import {useTracks} from '../composables/useTracks.js'
 import { usePlayerStore } from '~~/stores/player.js';
 import TrackItem from "../components/TrackItem.vue"
-const props = defineProps({
-  track: {
-    type: Object,
-    required: true,
-  },
-});
+// const props = defineProps({
+//   track: {
+//     type: Object,
+//     required: true,
+//   },
+// });
 const { fetchTracks, tracks, loading, error } = useTracks();
 const playerStore = usePlayerStore();
 onMounted(() => {
   fetchTracks(null,null);
   playerStore.playlist = tracks
+  playerStore.setNamePlaylist('Треки');
+});
+const handleKeydown = (event) => {
+  if (event.key === ' ') { // Space
+    if (playerStore.isPlaying && playerStore.audioRef){
+      playerStore.audioRef.pause();
+      playerStore.setPlaying(false)
+    } else if (!playerStore.isPlaying && playerStore.audioRef){
+      playerStore.audioRef.play();
+      playerStore.setPlaying(true)
+    } 
+  }
+};
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown);
 });
 
 </script>
@@ -39,149 +54,14 @@ onMounted(() => {
     <!-- // если всё ок, рендерим треки:  -->
     <div v-else class="content__playlist playlist">
       <TrackItem v-for="track in playerStore.playlist" :key="track.id" :track="track" />
+      <!-- измененная строка -->
     </div>
   </div>
 </template>
 
 <style scoped>
-.centerblock__content {
-  display: flex;
-  flex-direction: column;
-}
-
-.content__title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-
-.playlist-title__col {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 2px;
-  color: #696969;
-  text-transform: uppercase;
-}
-
-.playlist-title__svg {
-  width: 12px;
-  height: 12px;
-  fill: transparent;
-  stroke: #696969;
-}
-
-.content__playlist {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+.playlist{
   max-height: 500px;
-}
-
-.playlist__item {
-  width: 100%;
-  display: block;
-  margin-bottom: 12px;
-}
-
-.playlist__track {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.track__title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 447px;
-}
-
-.track__title-image {
-  width: 51px;
-  height: 51px;
-  padding: 16px;
-  background: #313131;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 17px;
-}
-
-.track__title-svg {
-  width: 18px;
-  height: 17px;
-  fill: transparent;
-  stroke: #4e4e4e;
-}
-
-.track__title-link {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #ffffff;
-}
-
-.track__title-span {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #4e4e4e;
-}
-
-.track__author {
-  width: 321px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.track__author-link {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #ffffff;
-  text-align: left;
-}
-
-.track__album {
-  width: 245px;
-}
-
-.track__album-link {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #696969;
-}
-
-.track__time {
-  display: flex;
-  align-items: center;
-}
-
-.track__time-svg {
-  width: 14px;
-  height: 12px;
-  margin-right: 17px;
-  fill: transparent;
-  stroke: #696969;
-}
-
-.track__time-text {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: right;
-  color: #696969;
 }
 .loading{
   width: 100%;
@@ -215,5 +95,22 @@ onMounted(() => {
     transform: rotate(360deg);
   }
 }
+::-webkit-scrollbar {
+  width: 4px;
+}
 
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
 </style>

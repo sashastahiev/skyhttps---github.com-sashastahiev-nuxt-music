@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar.vue";
 import PlayerBar from "../components/PlayerBar.vue";
 import Playlist from "../components/Playlist.vue";
 import Track from "../components/Track.vue";
-import Login from "../pages/login.vue"
 </script>
 
 <template>

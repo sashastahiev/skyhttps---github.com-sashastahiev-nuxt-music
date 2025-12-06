@@ -660,6 +660,7 @@ body {
 
 .player__btn-prev {
   margin-right: 23px;
+  cursor: pointer;
 }
 
 .player__btn-prev-svg {
@@ -680,6 +681,7 @@ body {
 .player__btn-next {
   margin-right: 28px;
   fill: #a53939;
+  cursor: pointer;
 }
 
 .player__btn-next-svg {
@@ -697,9 +699,11 @@ body {
   width: 18px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: #dcd9d9;
 }
-
+.player__btn-repeat-svg:hover{
+  stroke: #f7f1f1;
+}
 .player__btn-shuffle {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -713,9 +717,11 @@ body {
   width: 19px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: #dcd9d9;
 }
-
+.player__btn-shuffle-svg:hover{
+  stroke: #f7f1f1;
+}
 .player__track-play {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -31,6 +31,9 @@ export const usePlayerStore = defineStore("player", {
     isPlayBar: false,
     //Название плейлиста
     namePlaylist: null,
+    //Текущее время трека
+    currentTime: null,
+    duration: null,
   }),
 
   actions: {

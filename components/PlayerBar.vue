@@ -1,7 +1,7 @@
 <script setup>
 import { usePlayerStore } from "../stores/player";
 import { useAudioPlayer } from "../composables/useAudioPlayer";
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, computed } from "vue";
 const targetEl = ref(null);
 const playerStore = usePlayerStore();
 const audioRef = ref(null);
@@ -13,11 +13,18 @@ const {
   initPlayer,
   togglePlay,
   playTrack,
+  formatTime,
 } = useAudioPlayer();
 onMounted(() => {
   initPlayer(audioRef.value);
 });
+// Обработчики событий аудио
 
+const onLoadedMetadata = () => {
+  playerStore.duration = audioRef.value.duration;
+};
+const formattedCurrentTime = computed(() => formatTime(playerStore.currentTime));
+const formattedDuration = computed(() => formatTime(playerStore.duration));
 // Обработчик клика по прогресс-бару, чтобы перемотать трек
 const handleProgressClick = (event) => {
   if (!playerStore.currentTrack) return;
@@ -35,16 +42,7 @@ const handleProgressClick = (event) => {
 watchEffect(() => {
   //Метод для проигрывания плейлиста без взаимодействия
   if (playerStore.progress >= 99.9 && playerStore.repeat) {
-    if (playerStore.number === Math.max(...playerStore.playlist.map(item => item._id))){
-      itemTrack = playerStore.playlist[0];
-    }
-    else {
-      itemTrack = playerStore.playlist[playerStore.number + 1];
-    }
-    playerStore.setPlaying(false);
-    playerStore.setProgress(0);
-    playerStore.setCurrentTrack(itemTrack, itemTrack.album, itemTrack.author, itemTrack._id),
-    playTrack(itemTrack.track_file);
+    playTrack(playerStore.playlist[playerStore.number].track_file);
   }
   //Метод для проигрывания треков в случайном порядке
   if (playerStore.progress >= 99.9 && playerStore.shuffle){
@@ -85,6 +83,7 @@ watchEffect(() => {
             </div>
             <div
               class="player__btn-play _btn"
+              @timeupdate="onTimeUpdate"
               @click="
                 playerStore.author
                   ? togglePlay(playerStore.isPlaying)
@@ -153,6 +152,9 @@ watchEffect(() => {
         </div>
         <div class="bar__volume-block">
           <div class="volume__content">
+            <div class="time-display">
+                {{ formattedCurrentTime }} / {{ formattedDuration }}
+            </div>
             <div class="volume__image">
               <svg class="volume__svg">
                 <use xlink:href="/images/icon/sprite.svg#icon-volume"></use>
@@ -176,12 +178,19 @@ watchEffect(() => {
     <audio
       ref="audioRef"
       @timeupdate="handleTimeUpdate"
+      @loadedmetadata="onLoadedMetadata"
       @ended="handleTrackEnd"
     />
   </div>
 </template>
 
 <style scoped>
+.time-display {
+  font-family: normal;
+  font-size: 1rem;
+  margin-right: 17px;
+  color: #f9f3f3;
+}
 .bar {
   position: absolute;
   bottom: 0;

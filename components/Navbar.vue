@@ -1,13 +1,30 @@
 <script setup>
 import { ref } from 'vue';
-
+import { usePlayerStore } from '../stores/player';
 // Реактивное состояние видимости
 const isVisible = ref(false);
-
+const tracks = ref([]); 
+const indMyTracks = ref(false);
+const playerStore = usePlayerStore()
 // Метод переключения
 const toggleVisibility = () => {
   isVisible.value = !isVisible.value;
 };
+const setMyTracks = () => {
+  playerStore.namePlaylist = 'Мои треки'
+  if (!indMyTracks.value){
+    tracks.value = playerStore.playlist;
+    indMyTracks.value = true;
+  }
+  playerStore.playlist = playerStore.playlist.filter((item) => item.LikeActive === true)
+}
+const setTracks = () => {
+  playerStore.namePlaylist = 'Треки'
+  if (indMyTracks.value) {
+    playerStore.playlist = tracks.value;
+  }
+  indMyTracks.value = false;
+}
 </script>
 <template>
   <nav class="main__nav nav">
@@ -26,16 +43,14 @@ const toggleVisibility = () => {
     </div>
     <div v-show="isVisible" class="nav__menu menu">
       <ul class="menu__list">
-        <li class="menu__item">
+        <li class="menu__item" @click="setTracks()">
           <a href="#" class="menu__link">Главное</a>
         </li>
-        <li class="menu__item">
+        <li class="menu__item" @click="setMyTracks()">
           <a href="#" class="menu__link">Мой плейлист</a>
         </li>
         <li class="menu__item">
-          <NuxtLink class="menu__link" to="/Authform">
-            Войти
-          </NuxtLink>
+          <NuxtLink class="menu__link" to="/Authform">Войти</NuxtLink>
         </li>
       </ul>
     </div>

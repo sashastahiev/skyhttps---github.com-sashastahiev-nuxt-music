@@ -113,7 +113,6 @@ export const usePlayerStore = defineStore("player", {
     //Установить активацию лайка
     setActiveLike(id) {
       if (this.playlist){
-        console.log(id)
         if (this.playlist[id].LikeActive)
           this.playlist[id].LikeActive = false;
         else

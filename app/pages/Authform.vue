@@ -4,7 +4,7 @@
         <fieldset class="login-window">
              <NuxtImg
               alt="логотип Skypro"
-              :placeholder="[5]"
+              placeholder="[5]"
               src="../public/images/logo_modal.png"
               class="login-window_logo"
             />

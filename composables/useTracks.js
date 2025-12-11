@@ -11,7 +11,7 @@ export const useTracks = () => {
     loading.value = true;
     error.value = null;
     try {
-      const response = await fetch(`${API_URL}/catalog/track/favorite/all/`);
+      const response = await fetch(`${API_URL}/catalog/track/all/`);
       if (!response.ok) {
         throw new Error("Не удалось получить треки");
       }

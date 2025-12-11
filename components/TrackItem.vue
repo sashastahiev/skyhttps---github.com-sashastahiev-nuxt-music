@@ -55,6 +55,7 @@ const { playTrack } = useAudioPlayer()
 }
 .playlist__item {
   cursor: pointer;
+  background-color:rgba(24, 24, 24, 1);
 }
 .playlist__item:hover{
   background-color: rgb(69, 70, 70);

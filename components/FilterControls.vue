@@ -150,16 +150,17 @@ const playerStore = usePlayerStore()
   background: rgba(49, 49, 49);
 }
 .filter__item{
+  width: 100%;
   margin: 5px 0 5px 0;
   padding: 5px;
-  border-radius: 10px;
   cursor: pointer;
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
 }
 .filter__item:hover{
-  background-color: rgb(88, 84, 84);
+  color: rgba(182, 114, 255, 1);
+  text-decoration-line: underline;
 }
 .itemFilter{
   position: relative;

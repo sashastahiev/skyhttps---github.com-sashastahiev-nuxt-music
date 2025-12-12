@@ -660,6 +660,7 @@ body {
 
 .player__btn-prev {
   margin-right: 23px;
+  cursor: pointer;
 }
 
 .player__btn-prev-svg {
@@ -680,6 +681,7 @@ body {
 .player__btn-next {
   margin-right: 28px;
   fill: #a53939;
+  cursor: pointer;
 }
 
 .player__btn-next-svg {
@@ -697,9 +699,11 @@ body {
   width: 18px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: #dcd9d9;
 }
-
+.player__btn-repeat-svg:hover{
+  stroke: #f7f1f1;
+}
 .player__btn-shuffle {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -713,9 +717,11 @@ body {
   width: 19px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: #dcd9d9;
 }
-
+.player__btn-shuffle-svg:hover{
+  stroke: #f7f1f1;
+}
 .player__track-play {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -868,3 +874,34 @@ body {
 .volume__progress-line {
   width: 109px;
 }
+/* Базовый сброс и общие настройки */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 139px;
+  height: 2px;
+  border-radius: 4px;
+  background: rgba(121, 121, 121, 1); /* Серый фон для правой части */
+  outline: none;
+  margin-bottom: 12px;
+}
+
+/* Дорожка (Chrome/Safari) */
+input[type="range"]::-webkit-slider-rail {
+  background: transparent;
+  border-radius: 4px;
+}
+
+/* Ползунок (Chrome/Safari) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgba(26, 26, 26, 1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 3px solid #ffffff;
+}
+

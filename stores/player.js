@@ -19,20 +19,70 @@ export const usePlayerStore = defineStore("player", {
     author: null,
     //Ссылка на альбом
     album: null,
+    //Ссылка на номер трека
+    number: null,
+    //Обьект следующего трека в плейлисте
+    nextTrack: null,
+    //Индикатор повторения плейлиста
+    shuffle: false,
+    //Индикатор перемешивания последовательности треков
+    repeat: false,
+    //Видимость плеера
+    isPlayBar: false,
+    //Название плейлиста
+    namePlaylist: null,
+    //Текущее время трека
+    currentTime: null,
+    duration: null,
   }),
 
   actions: {
+    //Установить название плейлиста
+    setNamePlaylist(item){
+      this.namePlaylist = item;
+    },
+    //Переключить на следующий трек
+    setNextTrack(){
+      if (this.number < Math.max(...this.playlist.map(item => item._id))){
+        this.playlist[this.number].chosen = false;
+        this.nextTrack = this.playlist.find(element => element._id === this.number + 1);
+        this.number++;
+        this.currentTrack = this.nextTrack.track_file;
+        this.album = this.nextTrack.album;
+        this.author = this.nextTrack.author;
+        this.playlist[this.number].chosen = true;
+      }
+    },
+    setPrevTrack(){
+      if ( this.number > 0){
+        this.playlist[this.number].chosen = false;
+        this.nextTrack = this.playlist.find(element => element._id === this.number - 1);
+        this.number--;
+        this.currentTrack = this.nextTrack.track_file;
+        this.album = this.nextTrack.album;
+        this.author = this.nextTrack.author;
+        this.playlist[this.number].chosen = true;
+      }
+    },
     // Установить текущий трек
-    setCurrentTrack(track, album, author) {
+    setCurrentTrack(track, album, author, id) {
+      if (this.number){
+        this.playlist[this.number].chosen = false;
+      }
       this.currentTrack = track;
       this.album = album;
       this.author = author;
+      this.number = id;
+      this.playlist[0].chosen = false;
+      this.playlist[id].chosen = true;
+      this.isPlayBar = true;
     },
     // Установить плейлист
     setPlaylist(item, category) {
+      // метод замены плейлиста доработанный
       fetchTracks(item,category);
       this.playlist = tracks;
-      console.log(this.playlist)
+      this.number = null;
     },
 
     // Установить прогресс
@@ -44,12 +94,31 @@ export const usePlayerStore = defineStore("player", {
     setVolume(volume) {
       this.volume = volume;
     },
-
+    //Установить состояние повторения
+    setRepeat() {
+      this.repeat = !this.repeat;
+      if (this.shuffle)
+        this.shuffle = false;
+    },
+    //Установить состояние перемешивания
+    setShuffle() {
+      this.shuffle = !this.shuffle;
+      if (this.repeat)
+        this.repeat = false;
+    },
     // Установить состояние воспроизведения
     setPlaying(isPlaying) {
       this.isPlaying = isPlaying;
     },
-
+    //Установить активацию лайка
+    setActiveLike(id) {
+      if (this.playlist){
+        if (this.playlist[id].LikeActive)
+          this.playlist[id].LikeActive = false;
+        else
+          this.playlist[id].LikeActive = true;
+      }
+    },
     // Установить ссылку на аудиоэлемент
     setAudioRef(element) {
       this.audioRef = element;

@@ -17,19 +17,23 @@ export const useTracks = () => {
       }
       const data = await response.json();
       tracks.value = data.data;
-      if (category == 'author')
-      {
-        tracks.value = tracks.value.filter((item) => item.author == form)
+      if (category === 'author'){
+        tracks.value = tracks.value.filter((item) => item.author === form)
       }
-      if (category == 'year')
-      {
-        tracks.value = tracks.value.filter((item) => item.release_date == form)
+      if (category === 'year'){
+        tracks.value = tracks.value.filter((item) => item.release_date === form)
       }
-      if (category == 'genre')
-      {
-        tracks.value = tracks.value.filter((item) => item.genre.toLowerCase().trim() == form.toLowerCase().trim())
-        console.log(tracks.value.genre);
+      if (category === 'genre'){
+        tracks.value = tracks.value.filter((item) => item.genre.toLowerCase().trim() === form.toLowerCase().trim())
       }
+      tracks.value.sort((a, b) => a._id - b._id);
+      let count = 0;
+      tracks.value.forEach((item) => {
+        item.chosen = false;
+        item._id = count;
+        item.LikeActive = false;
+        count++;
+      })
     } catch (e) {
       error.value =
         e instanceof Error ? e.message : "Ошибка при загрузке треков :(";

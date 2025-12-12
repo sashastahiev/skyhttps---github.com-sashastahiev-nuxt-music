@@ -4,7 +4,35 @@ import Navbar from "../components/Navbar.vue";
 import PlayerBar from "../components/PlayerBar.vue";
 import Playlist from "../components/Playlist.vue";
 import Track from "../components/Track.vue";
-import Login from "../pages/login.vue"
+import TrackItem from "../components/TrackItem.vue"
+import { ref, computed } from 'vue';
+import { usePlayerStore } from '../stores/player.js';
+const playerStore = usePlayerStore();
+const query = ref('');
+const showDropdown = ref(false);
+// Фильтрованный результат
+const filteredResults = computed(() => {
+  if (!query.value) return [];
+  const newItems = playerStore.playlist.filter(item =>
+    item.name.toLowerCase().includes(query.value.toLowerCase())
+  );
+  if(newItems.length === 0){
+    return ["Ничего не найдено"]
+  }
+  else {
+    return newItems;
+  }
+});
+
+// Обработчики
+function onInput() {
+  showDropdown.value = true;
+}
+function onBlur() {
+  setTimeout(() => {
+    showDropdown.value = false;
+  }, 200); // Задержка для клика по элементу
+}
 </script>
 
 <template>
@@ -18,11 +46,21 @@ import Login from "../pages/login.vue"
               <use xlink:href="/images/icon/sprite.svg#icon-search"></use>
             </svg>
             <input
+              v-model="query"
               class="search__text"
               type="search"
               placeholder="Поиск"
               name="search"
+              @input="onInput"
+              @focus="showDropdown = true"
+              @blur="onBlur"
             />
+            <div
+              v-if="showDropdown && filteredResults.length"
+              class="dropdown">
+              <TrackItem class=""
+                v-for="track in filteredResults" :key="track.id" :track="track"/> 
+            </div>
           </div>
           <FilterControls />
           <Playlist />
@@ -86,6 +124,7 @@ import Login from "../pages/login.vue"
 .centerblock__search,
 .search {
   /* Форма поиска */
+  position: relative;
   width: 100%;
   border-bottom: 1px solid #4e4e4e;
   margin-bottom: 51px;
@@ -125,5 +164,34 @@ import Login from "../pages/login.vue"
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
+}
+.dropdown {
+  position: absolute;
+  overflow-y:auto;
+  max-height: 200px;
+  width: 1160px;
+  left: 20px;
+  top: 60px;
+  z-index: 999;
+  border: 2px solid #ffffff;
+  background-color: rgba(24, 24, 24, 1);
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6);
 }
 </style>

@@ -1,10 +1,7 @@
 import { usePlayerStore } from "../stores/player.js";
-import { watchEffect } from 'vue';
-
 export function useAudioPlayer() {
   // Получаем store, чтобы менять данные в хранилище
   const playerStore = usePlayerStore();
-
   // Инициализируем плеер в самом начале
   const initPlayer = (element) => {
     if (!element) {
@@ -13,7 +10,6 @@ export function useAudioPlayer() {
     }
     playerStore.setAudioRef(element);
   };
-
   // Воспроизводим трек
   const playTrack = async (track) => {
     if (!playerStore.audioRef) {
@@ -49,6 +45,7 @@ export function useAudioPlayer() {
       const progress = (currentTime / duration) * 100;
       playerStore.setProgress(progress);
     }
+    playerStore.currentTime = playerStore.audioRef.currentTime;
   };
   // Перематываем
   const seekTo = (percentage) => {
@@ -57,20 +54,16 @@ export function useAudioPlayer() {
     playerStore.audioRef.currentTime = newTime;
     playerStore.setProgress(percentage);
   };
-
-
   // Меняем громкость
   const updateVolume = () => {
     if (!playerStore.audioRef) return;
     playerStore.audioRef.volume = playerStore.volume / 100;
   };
-  watchEffect(() => {
-      if (playerStore.progress >= 100 && playerStore.isPlaying) {
-         playerStore.setPlaying(false);
-         playerStore.setProgress(0);
-      }
-   });
-
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
   return {
     initPlayer,
     playTrack,
@@ -78,5 +71,6 @@ export function useAudioPlayer() {
     seekTo,
     updateVolume,
     togglePlay,
+    formatTime,
   };
 }

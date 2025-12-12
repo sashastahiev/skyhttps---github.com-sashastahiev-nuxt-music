@@ -1,3 +1,7 @@
+<script setup>
+import { usePlayerStore } from '../stores/player';
+const playerStore = usePlayerStore();
+</script>
 <template>
   <div class="main__sidebar sidebar">
     <div class="sidebar__personal">
@@ -12,28 +16,34 @@
       <div class="sidebar__list">
         <div class="sidebar__item">
           <a class="sidebar__link" href="#">
-            <img
-              class="sidebar__img"
+            <NuxtImg
+              alt="day's playlist"
+              :placeholder="[5]"
               src="/images/playlist01.png"
-              alt="day's playlist"
+              class="sidebar__img"
+              @click="playerStore.setNamePlaylist('Плейлист дня')"
             />
           </a>
         </div>
         <div class="sidebar__item">
           <a class="sidebar__link" href="#">
-            <img
-              class="sidebar__img"
+            <NuxtImg
+              alt="day's playlist"
+              :placeholder="[5]"
               src="/images/playlist02.png"
-              alt="day's playlist"
+              class="sidebar__img"
+              @click="playerStore.setNamePlaylist('100 танцевальных хитов')"
             />
           </a>
         </div>
         <div class="sidebar__item">
           <a class="sidebar__link" href="#">
-            <img
-              class="sidebar__img"
-              src="/images/playlist03.png"
+            <NuxtImg
               alt="day's playlist"
+              :placeholder="[5]"
+              src="/images/playlist03.png"
+              class="sidebar__img"
+              @click="playerStore.setNamePlaylist('Инди заряд')"
             />
           </a>
         </div>
@@ -42,67 +52,3 @@
   </div>
 </template>
 
-<style scoped>
-.main__sidebar {
-  max-width: 418px;
-  padding: 20px 90px 20px 78px;
-}
-
-.sidebar__personal {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 12px 0 15px 0;
-}
-
-.sidebar__personal-name {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #ffffff;
-  margin-right: 16px;
-}
-
-.sidebar__icon {
-  width: 43px;
-  height: 43px;
-  background-color: #313131;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.sidebar__block {
-  height: 100%;
-  padding: 240px 0 0 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.sidebar__list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sidebar__item {
-  width: 250px;
-  height: 150px;
-}
-
-.sidebar__item:not(:last-child) {
-  margin-bottom: 30px;
-}
-
-.sidebar__link {
-  width: 100%;
-  height: 100%;
-}
-
-.sidebar__img {
-  width: 100%;
-  height: auto;
-}
-</style>
